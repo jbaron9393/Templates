@@ -2642,6 +2642,108 @@ const SERVICES = [
   { name: 'BST', branch: toCategoryBasedBranch(BST_BRANCH, 'General') }
 ].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
 
+
+const DOC_LINKS_BY_SERVICE = {
+  'BST': [
+    { label: 'BST grossing info.docx', href: 'docs/BST/BST grossing info.docx' },
+    { label: 'BST.james version.pdf', href: 'docs/BST/BST.james version.pdf' }
+  ],
+  'Biopsies (non-derm)': [
+    { label: 'GI Biopsy Headers and Formatting.docx', href: 'docs/Biopsies (non-derm)/GI Biopsy Headers and Formatting.docx' }
+  ],
+  'Bone Marrow / Lymphomas': [
+    { label: 'Bone marrow Acccessioning and Grossing.docx', href: 'docs/BM-Heme-Lymphoma/Bone marrow Acccessioning and Grossing.docx' },
+    { label: 'CU Lymphoma Protocol__02-06-2023.pdf', href: 'docs/BM-Heme-Lymphoma/CU Lymphoma Protocol__02-06-2023.pdf' }
+  ],
+  'Breast': [
+    { label: 'Mastectomy Grossing.docx', href: 'docs/Breast/Mastectomy Grossing.docx' },
+    { label: 'AAPA Invasive Breast Cancer Grossing Protocol.pdf', href: 'docs/Breast/AAPA Grossing Protocols/AAPA Invasive Breast Cancer Grossing Protocol.pdf' }
+  ],
+  'Derm': [
+    { label: 'Unoriented Ellipse.docx', href: 'docs/Derm/Unoriented Ellipse.docx' },
+    { label: 'AAPA Melanoma of the Skin Grossing Protocol.pdf', href: 'docs/Derm/AAPA Grossing Protocols/AAPA Melanoma of the Skin Grossing Protocol.pdf' }
+  ],
+  'Faxitron': [
+    { label: 'How-to guide.docx', href: 'docs/Faxitron/How-to guide.docx' }
+  ],
+  'Frozens': [
+    { label: 'Cryostat troubleshooting.docx', href: 'docs/Frozens/Cryostat troubleshooting.docx' },
+    { label: 'CryoStar NX50 Operator Guide 388149 Issue 2.0.pdf', href: 'docs/Frozens/CryoStar NX50 Operator Guide 388149 Issue 2.0.pdf' }
+  ],
+  'GI': [
+    { label: 'GI 1&2 Grossing TEMPLATES.docx', href: 'docs/GI 1&2 Grossing TEMPLATES.docx' }
+  ],
+  'GU': [
+    { label: 'GU Specimens COMPLETE.docx', href: 'docs/GU Specimens COMPLETE.docx' }
+  ],
+  'GYN 2': [
+    { label: 'Cervix LEEP or cone Gross Protocol and Template 041624.docx', href: 'docs/GYN2/Cervix LEEP or cone Gross Protocol and Template 041624.docx' },
+    { label: 'Placenta ~SINGLETON~ Gross Protocol and Template 041624.docx', href: 'docs/GYN2/Placenta ~SINGLETON~ Gross Protocol and Template 041624.docx' }
+  ],
+  'GYN1': [
+    { label: 'Hysterectomy GROSS TEMPLATE ONLY 041723.docx', href: 'docs/GYN1/Hysterectomy GROSS TEMPLATE ONLY 041723.docx' },
+    { label: 'Ovary and fallopian tube Gross Protocol and Templates 040324.docx', href: 'docs/GYN1/Ovary and fallopian tube Gross Protocol and Templates  040324.docx' }
+  ],
+  'HNE': [
+    { label: 'HNE Grossing Guide TEMPLATES.docx', href: 'docs/HNE/HNE Grossing Guide TEMPLATES.docx' },
+    { label: 'CAP Thyroid.pdf', href: 'docs/HNE/CAP Thyroid.pdf' }
+  ],
+  'Heart': [
+    { label: 'Heart Macros.docx', href: 'docs/Heart/Heart Macros.docx' },
+    { label: 'AAPA Heart Primary Grossing Protocol.pdf', href: 'docs/Heart/AAPA Heart Primary Grossing Protocol.pdf' }
+  ],
+  'Liver': [
+    { label: 'liver templates.docx', href: 'docs/Liver/liver templates.docx' },
+    { label: 'AAPA Hepatocellular Carcinoma Grossing Protocol.pdf', href: 'docs/Liver/AAPA Grossing Protocols/AAPA Hepatocellular Carcinoma Grossing Protocol.pdf' }
+  ],
+  'Lung': [
+    { label: 'Lung Grossing and Templates.docx', href: 'docs/Lung/Lung Grossing and Templates.docx' },
+    { label: 'AAPA Lung Primary Carcinoma Grossing Protocol.pdf', href: 'docs/Lung/AAPA Grossing Protocol/AAPA Lung Primary Carcinoma Grossing Protocol.pdf' }
+  ],
+  'Neuro and Eye': [
+    { label: 'Neuro Templates.docx', href: 'docs/Neuro and Eye/Neuro Templates.docx' },
+    { label: 'CAP Brain and Spinal Cord.pdf', href: 'docs/Neuro and Eye/CAP Brain and Spinal Cord.pdf' }
+  ],
+  'Pediatric Tumors': [
+    { label: 'FAQ.docx', href: 'docs/Pediatric Tumors/FAQ.docx' },
+    { label: 'AAPA Rhabdomyosarcoma Grossing Protocol.pdf', href: 'docs/Pediatric Tumors/AAPA Rhabdomyosarcoma Grossing Protocol.pdf' }
+  ],
+  'Renal': [
+    { label: 'Renal Adequacy Assessment How To.docx', href: 'docs/Renal/Renal Adequacy Assessment How To.docx' },
+    { label: 'The Renal Biopsy- Article.pdf', href: 'docs/Renal/The Renal Biopsy- Article.pdf' }
+  ]
+};
+
+function getCategoryDocLinks(serviceName, categoryName) {
+  const links = DOC_LINKS_BY_SERVICE[serviceName] || [];
+  if (!categoryName) return links;
+
+  const normalizedCategory = normalize(categoryName);
+  const matched = links.filter((link) => normalize(link.label).includes(normalizedCategory));
+  return matched.length ? matched : links;
+}
+
+function createDocLinksRow(serviceName, categoryName = '') {
+  const links = getCategoryDocLinks(serviceName, categoryName);
+  if (!links.length) return null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'meta';
+
+  links.slice(0, 2).forEach((link, index) => {
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = `Doc: ${link.label}`;
+    a.style.display = 'block';
+    a.style.margin = index === 0 ? '6px 0 2px' : '2px 0 4px';
+    wrap.appendChild(a);
+  });
+
+  return wrap;
+}
+
 const navEl = document.getElementById('nav');
 const searchEl = document.getElementById('search');
 const previewEl = document.getElementById('preview');
@@ -2864,6 +2966,9 @@ function render(filterText = '') {
     const serviceItemsDiv = document.createElement('div');
     serviceItemsDiv.className = 'items';
 
+    const serviceDocLinks = createDocLinksRow(serviceName);
+    if (serviceDocLinks) serviceItemsDiv.appendChild(serviceDocLinks);
+
     if (!filteredStandalone.length && !filteredCategories.length) {
       const empty = document.createElement('div');
       empty.className = 'meta';
@@ -2894,6 +2999,9 @@ function render(filterText = '') {
 
       const categoryItemsDiv = document.createElement('div');
       categoryItemsDiv.className = 'items';
+
+      const categoryDocLinks = createDocLinksRow(serviceName, category.name);
+      if (categoryDocLinks) categoryItemsDiv.appendChild(categoryDocLinks);
 
       category.specimens.forEach((specimen) => {
         visibleSpecimenCount += 1;

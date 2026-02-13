@@ -429,6 +429,12 @@ const GU_BRANCH = {
   ]
 };
 
+
+const SERVICE_DOCS = {
+  GI: 'docs/GI 1&2 Grossing TEMPLATES.docx',
+  GU: 'docs/GU Specimens COMPLETE.docx'
+};
+
 const SERVICES = [
   { name: 'GI', branch: GI_BRANCH },
   { name: 'GU', branch: GU_BRANCH },
@@ -518,6 +524,19 @@ function render(filterText = '') {
 
     const serviceItemsDiv = document.createElement('div');
     serviceItemsDiv.className = 'items';
+
+    const serviceDocPath = SERVICE_DOCS[serviceName];
+    if (serviceDocPath) {
+      const docLink = document.createElement('a');
+      docLink.href = encodeURI(serviceDocPath);
+      docLink.textContent = `Open ${serviceName} Word document`;
+      docLink.className = 'meta';
+      docLink.style.display = 'inline-block';
+      docLink.style.marginBottom = '8px';
+      docLink.target = '_blank';
+      docLink.rel = 'noopener noreferrer';
+      serviceItemsDiv.appendChild(docLink);
+    }
 
     if (!filteredStandalone.length && !filteredCategories.length) {
       const empty = document.createElement('div');

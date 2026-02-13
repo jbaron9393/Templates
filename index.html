@@ -2593,6 +2593,36 @@ function normalize(s) {
 }
 function setStatus(msg) { statusEl.textContent = msg || ''; }
 
+function splitInlineListItems(rawLine) {
+  const text = (rawLine || '').trim();
+  if (!text) return [''];
+
+  const markerRegex = /(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s+/g;
+  const starts = [];
+  let match;
+
+  while ((match = markerRegex.exec(text)) !== null) {
+    starts.push(match.index);
+  }
+
+  if (starts.length < 2) {
+    return [text];
+  }
+
+  const parts = [];
+  const prefix = text.slice(0, starts[0]).trim();
+  if (prefix) parts.push(prefix);
+
+  for (let i = 0; i < starts.length; i += 1) {
+    const start = starts[i];
+    const end = i + 1 < starts.length ? starts[i + 1] : text.length;
+    const chunk = text.slice(start, end).trim();
+    if (chunk) parts.push(chunk);
+  }
+
+  return parts;
+}
+
 function renderSectionBody(lines) {
   const fragments = [];
   let paragraphBuffer = [];
@@ -2611,24 +2641,28 @@ function renderSectionBody(lines) {
   };
 
   lines.forEach((rawLine) => {
-    const line = (rawLine || '').trim();
-    if (!line) {
-      flushParagraph();
+    const expandedLines = splitInlineListItems(rawLine || '');
+
+    expandedLines.forEach((expandedLine) => {
+      const line = (expandedLine || '').trim();
+      if (!line) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
+      const listMatch = line.match(/^(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s*(.*)$/);
+      if (listMatch) {
+        flushParagraph();
+        const marker = listMatch[1];
+        const content = listMatch[2] || '';
+        listBuffer.push(`${marker} ${content}`.trim());
+        return;
+      }
+
       flushList();
-      return;
-    }
-
-    const listMatch = line.match(/^(\d+\.|\([0-9a-zA-Z]+\))\s*(.*)$/);
-    if (listMatch) {
-      flushParagraph();
-      const marker = listMatch[1];
-      const content = listMatch[2] || '';
-      listBuffer.push(`${marker} ${content}`.trim());
-      return;
-    }
-
-    flushList();
-    paragraphBuffer.push(line);
+      paragraphBuffer.push(line);
+    });
   });
 
   flushParagraph();

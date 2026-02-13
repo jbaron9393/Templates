@@ -231,10 +231,10 @@
   <div class="main-container">
     <div class="nav-panel">
       <div class="panel-header">
-        <span>Templates</span>
+        <span>Services</span>
         <span class="meta" id="countMeta"></span>
       </div>
-      <input id="search" class="search" type="text" placeholder="Search (e.g., gallbladder, appendix, tumor)..." />
+      <input id="search" class="search" type="text" placeholder="Search specimens (e.g., gallbladder, kidney, breast)..." />
       <div id="nav" class="nav"></div>
       <div class="meta" style="margin-top:10px;">
         Source: GI (GI, G2) Grossing Manual (updated 7/22/24)
@@ -266,6 +266,47 @@
 <script>
 const DATA = [{"category": "Dictating Frozen Sections", "items": [{"display": "Dictating Frozen Sections", "text": "Received fresh and entirely utilized for frozen section diagnosis is a container labeled “[patients name/ MRN/peritoneum nodule]” is a [peritonealized, tan soft-tissue fragment], [0.7 x 0.3 x 0.2] cm, and the frozen remnant is resubmitted in (FS[A1])."}]}, {"category": "Luminal Biopsies (Esophagus, Stomach, Duodenum, Colon, Bile Duct, etc.)", "items": [{"display": "Luminal Biopsies (Esophagus, Stomach, Duodenum, Colon, Bile Duct, etc.)", "text": "Received in a formalin container labeled “[patient’s Name/MRN/site]” [is a/are #] soft tan tissue[s] that are [# to #] cm in greatest dimension and [# x # x #]cm in aggregate. The specimen is submitted in toto in ([A]1)."}]}, {"category": "INTACT Endoscopic Mucosal Resection (EMR/CMR/ESD)/ Trans-Anal Excision Specimens- Oriented and Unoriented", "items": [{"display": "INTACT Endoscopic Mucosal Resection (EMR/CMR/ESD)/ Trans-Anal Excision Specimens- Oriented and Unoriented", "text": "Received in a formalin container labeled “[patient’s name/MRN/site]\" is an intact and oriented mucosal resection specimen, [# x # x #] cm, that is oriented as follows: [_].  The mucosa is remarkable for a [topographically irregular and nodular] lesion, [# x # x #] cm, which is [#] cm from the closest resection margin [(specify closest orientation, if any)].  The specimen is serially sectioned from [__] to [__] and submitted sequentially and entirely as follows:\n\n([A1]) [distal most / proximal most / _ o’clock] slice, perpendicularly sectioned\n([A2])-([A#]] central cross sections, ([A#-A#] contains the lesion)\n([A#]) [distal most / proximal most / _ o’clock] slice, perpendicularly sectioned"}]}, {"category": "Polypectomy and Fragmented EMR/ CMR/ ESD Specimens", "items": [{"display": "Polypectomy and Fragmented EMR/ CMR/ ESD Specimens", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is [an intact/disrupted] [pedunculated/sessile] polyp, [x x x] cm, with a resection margin that is inked [black].  The specimen is serially sectioned and submitted entirely in ([A1])."}]}, {"category": "Gallbladder", "items": [{"display": "Gallbladder for Benign Disease", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is an [intact/disrupted] saccular gallbladder, [# x # x #] cm with a [pink-purple, smooth, and glistening] serosal surface. The cystic duct margin is inked [black] and there is [no/an] apparent cystic lymph node. The gallbladder contains [green tenacious] bile and is [acalculous] [with/without] obstruction of the cystic duct.  Cut surfaces demonstrate a [bile stained and velvety] mucosa and the wall averages [#] cm in thickness.  [No polyps or masses are identified]. Representative sections including the cystic duct margin, fundus, and body are submitted in ([A1])."}, {"display": "Gallbladder for Tumor/Polyp", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is an [intact/disrupted] saccular gallbladder, [# x # x #] cm. The serosal surface is [pink-purple, smooth, and glistening]. The cystic duct margin is inked [black], adventitial surface is inked [blue], and there is [no] appreciated cystic lymph node. The gallbladder contains [green tenacious] bile and has [multiple, yellow, bossellated calculi up to 0.8 cm in greatest dimension] [with/without] occlusion of the cystic duct.\n\nCut surfaces demonstrate a [bile stained and velvety] mucosa with [a single, yellow, polyp], [# x # x #] cm that is [#] cm from the cystic duct margin. There [is/is not] associated induration of the mucosal wall spanning an area of [# x #] cm and is [at the adventitial surface and abuts the blue inked margin]. No additional lesions have been identified. A gross photograph of the mucosal surface and the lesion are taken.\n\nRepresentative sections including the entire area of induration are submitted as follows:\n([A]1) Cystic duct margin, en face [and cystic node]\n([A2]-[A4]) Polyp and induration with relationship to the margin in [A4].\n([A5]) Representative body and fundus"}]}, {"category": "Appendix", "items": [{"display": "Appendix for Benign Disease", "text": "Received in a formalin container labeled \"[patient's name/ MRN/site]\" is an [intact] vermiform appendix, [# x # x #] cm, with an attached mesoappendix and staples across the base margin which is inked [black].  The serosal surface is [smooth and glistening] and cut surfaces demonstrate [a denuded, red mucosa] with an average wall thickness of [#] cm. There is [no] [blood/fecal/purulent material] throughout the lumen.  Representative sections, including the inked base margin, bisected tip and representative cross section are submitted in ([A1])."}, {"display": "Appendix for Mucinous Neoplasm or Mucocele", "text": "Received in a formalin container labeled \"[patient's name/ MRN/site]\" is an [intact and dilated] vermiform appendix, [# x # x #] cm, with an attached mesoappendix and staples across the base margin which is inked [black]. The outer surface is inked [blue] prior to sectioning and the serosal surface is [smooth and glistening] with [no] extra-appendiceal mucin present.  The specimen is serially sectioned to reveal [mucin within the dilation, # x # x #] cm and the dilation is [#] cm from the stapled resection margin.  The mucosal surface [is denuded at the area of dilation, but otherwise pink and unremarkable].  A gross photograph is taken.\n\nThe appendix is entirely submitted as follows:\n([A1]) Inked base margin, en face\n([A2]-[A#]) Central cross sections proximal to distal\n([A#]) Bisected tip"}]}, {"category": "Esophagus", "items": [{"display": "Esophagus- Partial and Total for Tumor", "text": "Received [fresh for frozen section diagnosis and subsequently placed in formalin] in a container labeled \"[patient's name/MRN/site]\" is a [# x # x #] cm esophagogastrectomy specimen with [staples] along the resection margins.  The segment of [distal] esophagus is [#] cm in length and averages [#] cm in diameter.  The proximal stomach is [# x # x #] cm.  The adventitia of the esophagus is [ragged, intact] and inked [black]. The serosa of the stomach is [smooth and glistening].  The specimen is opened to reveal a [# x # x #] cm [tan-pink and ulcerated] lesion located [#] cm from the proximal margin and [#] cm from the closest distal margin.  The lesion [straddles] the gastroesophageal junction with an epicenter located [in the esophagus], [#] cm from the gastroesophageal junction.  Upon sectioning, the lesion invades [into but not through] [the muscularis] to a depth of [#] cm and [#] cm to the circumferential esophageal margin.  The uninvolved esophageal is [white and glistening with appropriate mucosal folds].  The uninvolved gastric mucosa is [tan and glistening with appropriate rugal folds].  The periesophageal and perigastric adipose is dissected for possible lymph node candidates that are [#] to [#] cm in greatest dimension. A gross photograph is taken.  Representative sections, including the [entire lesion] and all possible lymph nodes are submitted as follows:\n\n([A1]) Proximal margin, en face\n([A2]) Closest distal margin, en face\n([A3]-[A#]) Lesion, including deepest point of invasion and relationship to adventitial margin\n([A#]) Representative uninvolved esophagus\n([A#]-[A#]) Lymph node candidates"}]}, {"category": "Stomach", "items": [{"display": "Partial Stomach Resection for Morbid Obesity", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is a partial stomach specimen, [# x #] cm, with [staples across the resection margin and stripped omentum along the opposing surface].  The serosal surface is [tan-pink and glistening] and the lumen contains [hemorrhagic, red, mucinous fluid].  The mucosal surface is [red and tan with appropriate rugal folds and a pliable wall with an average thickness of 0.4 cm].  [No polyps or lesions are identified].  Representative sections are submitted in ([A1])."}, {"display": "Stomach Wedge Resection (ie GIST)", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is a stomach wedge resection specimen, [# x # x #] cm, with [staples or cautery] across the resection margin which is inked [black].  The serosal surface is [tan-pink and glistening].  Cut surfaces demonstrate a [well circumscribed white-tan, homogenous nodule], [# x # x #] cm arising from [within the gastric wall], [deep to] the serosa and [uninvolved] by the mucosa. The nodule has [multiple foci] of chalky discoloration accounting for approximately [20]% of the nodule. This nodule is [#] cm from the resection margin.  The mucosal surface is [red and tan with appropriate rugal folds and a pliable wall with an average thickness of 0.4 cm] and is [not] involved or adherent to the nodule.  [No] omentum or perigastric soft tissues are submitted with the resection and no lymph nodes are identified. A gross photograph is taken. The specimen is submitted entirely in ([A1]-[A6])."}, {"display": "Stomach for Genetic Mutation", "text": "Received in formalin in a container labeled \"[patient's name/MRN/site]\" is a total gastrectomy specimen [# x # x #] cm, with stapled resection margins and [including a distal esophagus segment], [# x #] cm, which is inked [blue]. Along the greater and lesser curvatures pieces of omentum, averaging [# x # x #] cm which are yellow and lobulated and without lesion. The serosal surface is [smooth, glistening, and is not diffusely firm].  The specimen mucosa is [tan, brown with appropriate rugal folds]. There are [no discrete polyps or lesions].  The stomach is serially sectioned and submitted sequentially from [left to right] per the annotated photograph. Multiple possible lymph nodes are identified that range from [#] to [#] cm in greatest dimension and submitted entirely along with the entire stomach as follows:\n\n([A1]) Proximal margin, en face\n([A2]) Distal margin, en face\n([A3]-[A#]) Stomach from [left] to [right], see annotated photograph.\n([A#]-[A#]) [Lymph node candidates per cassette, specify]"}, {"display": "Stomach (Partial and Total) for Tumor", "text": "Received [fresh for frozen section diagnosis, tissue banking and subsequently placed in formalin] labeled \"[patient's name/MRN/site]\" is a partial [proximal] gastrectomy specimen, [# x # x #]cm, with attached distal esophagus, [# x #] cm and inked [blue]. Yellow, lobulated, omentum is attached to the greater and lesser curvatures that averages [# x # x #] cm. The serosal surface is [smooth, glistening, and the wall is [not] diffusely firm.  The lumen contains minimal transparent mucinous fluid and no food material. Cut surfaces demonstrate a [tan] ulceration in the cardia, that is [#] cm from the proximal margin, [#] cm from the distal margin and [#] cm from the radial margin. The serosal surface over the identified ulceration is inked [black].  The ulceration invades [into but not through the muscularis propria] and does [not] involve the serosa. The remainder of the gastric mucosa is [tan-brown with appropriate rugal folds throughout] and no additional lesions are identified.  A gross photograph is taken. Multiple possible lymph nodes that are [#] to [#] cm in greatest dimension are identified and entirely submitted along with representative sections as follows:\n\n([A1]) Proximal margin, en face\n([A2]) Distal margin, en face\n([A3]-[A#]) Tumor, including greatest depth of invasion\n([A#]-[A#]) Representative sections of uninvolved stomach\n([A#]-[A#]) [Lymph node candidates per cassette, specify]"}]}, {"category": "Intestine", "items": [{"display": "Stoma", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is [an intact/disrupted] [ileostomy/colostomy] specimen, [# x # x #] cm, with staples across the base margin. The stoma is [patent and viable without protrusion of the mucosal surface]. The stomal opening is [circumferentially rimmed by [gray-tan] skin up to [0.2] cm in thickness]. Cut surfaces demonstrate a [viable tan mucosa with appropriate mucosal folds and no discrete lesions].\n\nRepresentative sections are submitted as follows:\n(A1) Stoma\n(A2) Resection margin, en face"}, {"display": "Anastomoses", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is [an intact/disrupted] [pedunculated/sessile] polyp with a resection margin that is inked [black].  The specimen is serially sectioned and submitted entirely in ([A1])."}, {"display": "HIPEC Debulk specimens of GI tract", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is [an irregular, tan-pink, tissue fragment], [# x # x #] cm, with [a translucent mucinous lesion], [# x # x #] cm, [across the peritonealized surface]. The specimen is serially sectioned and submitted entirely in ([A1])."}, {"display": "Pelvic Exenteration", "text": "Received in a formalin container labeled \"[patient's name/MRN/site]\" is an en bloc resection consisting of rectosigmoid colon, ([#] cm in length and [#] cm in diameter), with attached mesentery, appendix ([#] cm in length, [#] cm, wall thickness of [x] cm), uterus ([#] cm cervix to fundus, [#] cm cornu to cornu, [#] cm anterior to posterior), bilateral fallopian tubes (averaging [#] cm in length and [#] cm in diameter), and bilateral ovaries (averaging [# x # x #] cm).\n\nThe rectosigmoid is [densely adherent to the uterine fundus/posterior uterus, right fallopian tube, and appendix]. The mucosal surface of the rectosigmoid is remarkable for an [irregular fungating mass] that [circumferentially involves the intestinal wall] and is [#] cm from the distal margin and [#] cm from the proximal margin. Sectioning of the mass demonstrates [infiltration into the pericolonic soft tissue with the mass abutting the radial/mesenteric margin].\n\nThe posterior uterine serosa is densely adherent to the rectum with intervening fibrous tissue, but does not appear to be involved by the mass. (usually there’s a reason the uterus came out). [The remaining external surface of the uterus is unremarkable. The cervix measures x cm in diameter and has a x cm [slit like] os. The uterus cavity is remarkable for a triangular endometrial cavity (approximately # x # cm) with a x cm thick endometrium and x cm thick myometrium all without lesions.]\n\n[The left ovary appears grossly unremarkable externally; cut surfaces do not reveal any lesions. The left fallopian tube is identified, though the fimbriated ends are not readily seen. Serially sectioning of the left fallopian tube is otherwise unrevealing.] Gross photographs are taken. Representative sections are submitted as follows:\n\n([A1]) Mass, pilot section\n([A2-A3]) Mass, composite, greatest depth of invasion\n([A4-A8]) Mass, composite\n([A9]) Proximal margin, en face\n([A10-A11]) Distal margin, en face\n([A12]) Right ovary\n([A13]) Left ovary\n([A14]) Posterior endomyometrium with serosal adhesions\n([A15]) Anterior endomyometrium\n([A16]) Left fallopian tube\n([A17]) Right fallopian tube\n([A18-A19]) 3:00-12:00 anterior cervix\n([A20-A23]) 12:00-9:00 anterior cervix\n([A24-A27]) 9:00-6:00 posterior cervix\n([A28-A31]) 6:00-03:00 posterior cervix\n([A32-A40]) Five intact lymph node candidates\n([A41]) Appendix, cross sections\n([A42]) Appendiceal tip, bisected\n([A43]) Mass to right fallopian tube and uterus, trisected, cut surfaces inked\n([A44]) Additional representative sections of possible right ovary with cystic structure\n([A49-A50]) Mass to uterus, bisected\n([A51]) Mass to radial margin\n([A52]) Tumor to right fallopian tube and uterus"}, {"display": "IBD (Crohn’s and UC)", "text": "Received fresh labeled \"[patients name/MRN/site]\" is a segment of [terminal ileum (# cm in length and # cm in diameter), colon (# cm in length and [#] cm in diameter), appendix (# cm in length and # cm in diameter)] that is [stapled/open] at each end. The [attached omentum/mesentery is up to #] cm in thickness and are [adhesed to itself to form a U-shaped portion of colon involving the transverse, descending and sigmoid colon]. The serosa has [multiple transmural ovoid defects ranging from 1.0-4.2 cm]. Creeping fat [is/is not] present. There are [multiple palpable lymph nodes within the adipose tissue  up to 2.0] cm in greatest dimension. The appendix has a [tan-pink to red-brown, smooth and glistening serosal surface]. The lumen contains [tan-brown, soft fecal material] and there is a wall thickness of [0.2] cm [with/without] fecaliths. The mucosa of the colon is [red brown with diffuse discolored tan-green areas, pseudopolyps and ulcerations]. Uninvolved colon mucosa is [not] grossly identified. [The ileum mucosa is hyperemic and edematous with normal folds.] Distinct masses are [absent].\n\nRepresentative sections are submitted as follows:\n([A1]) Ileum staple line, en face\n([A2]) Distal colon margin, en face\n([A3]) Appendix-mid appendix and bisected tip\n([A4]) Cysts on external surface\n([A5]) Representative defects\n([A6-A16]) Sections at 10 cm intervals from distal to proximal\n([A17]) Two representative lymph nodes"}, {"display": "Segmental Bowel for Diverticular Disease/ Ischemic Bowel", "text": "Received in formalin labeled \"[patient name/ MRN/ Site]\" is an unoriented segment of colon, [#] cm in length and a diameter [ranging from 1.5-3.5] cm, with [staples at both resection margins and attached pericolonic adipose. The serosal surface is [pink-purple and focally ragged].\n\nCut surfaces demonstrate [a markedly irregular, focally congested, tan-pink, soft mucosa] with [regular/irregular] mucosal folding pattern. Sectioning demonstrates [focally thickened, fibrotic bowel wall with numerous mucosal diverticula], [with a prominent # x # x # cm abscess cavity containing yellow-green probable fecal material]. The abscess is [present # cm from the proximal margin and # cm from the distal margin. The remaining diverticula are intact without fecal impaction or perforation. Multiple palpable lymph nodes are identified up to [#] cm in greatest dimension.  Representative sections are submitted as follows:\n\n([A1]) Proximal margin, en face\n([A2]) Distal margin, en face\n([A3]) Representative diverticulum\n([A4]) Bowel wall to abscess\n([A5]) Lymph node, bisected"}, {"display": "Colon (Right) for Tumor", "text": "Received [fresh for tumor banking and subsequently placed in formalin] in a container labeled \"[Patient name/ MRN/ Right hemicolectomy]\" is a [non-]perforated hemicolectomy specimen, [# x # x #] cm, consisting of terminal ileum [# x #], appendix [# x #] cm, and cecum and ascending colon, [# x #] cm.\nThe terminal ileum margin is inked [green], the distal margin is inked [blue], and [the puckering on the serosal surface is inked [black].\n\nThe serosa [has dense adhesions on the cecum and colon and is otherwise tan-pink and smooth]. Cut surfaces demonstrate a [100% circumferential, brown, pink, irregular ulceration with a red center, [# x # x #] cm in [the ascending colon/cecum]. It is [#] cm from the proximal margin, [#] cm from the distal margin, and [#] cm from the radial margin. The ulceration extends [into the mesentery] and is [#] cm from the mesenteric margin.\n\nThe remaining mucosa is [unremarkable tan-pink and with appropriate mucosal folds]. Gross photographs are taken. Multiple possible lymph nodes were identified within the adipose, up to [#] cm in greatest dimension which are entirely submitted along with representative sections as follows:\n\n([A1) Tumor, pilot, including deepest point of invasion.\n([A2) Proximal bowel resection margin\n([A3) Distal bowel resection margin\n([A4) Closest deep resection margin\n([A5) Additional lesion, deepest point of invasion\n([A6-A12) Additional lesion, representative\n([A13) Cecal wall thickening to appendiceal orifice\n([A14) Uninvolved small and large bowel\n([A15]) Appendix, bisected tip, and cross section\n([A16-A17]) One lymph node candidate, bisected\n([A18]) One lymph node candidate, bisected\n([A19]) One lymph node candidate, bisected\n([A20]) Ten intact lymph node candidates\n([A21]) Five intact lymph node candidates"}, {"display": "Low Anterior Resection/ Abdominoperineal Resection for Tumor", "text": "Received [fresh/ in formalin] in a container labeled “[patient’s name/MRN/site]” is a [non-]perforated, segment of colon [and rectum/anus], [# x # x # cm]. The segment of large intestine is entirely peritonealized.  [The non-peritonealized portion of bowel is [#] cm and the mesorectal envelope appears [complete].  The serosa is [pink-tan and smooth].  The deep resection margin is inked [black].\n\nCut surfaces demonstrate a [circumferential, lobulated, exophytic mass], [# x # x #] cm, and is [%] circumferential.  It is on the [anterior/lateral/etc] side of the wall, that is [above/at/below] the peritoneal reflection, [#] cm to the inked deep margin, [#] cm from the proximal margin, and [#] cm from the distal margin. The remaining mucosa is [unremarkable without additional polyp or lesion].  Gross photographs are taken. Multiple possible lymph nodes are identified ranging from [#] to [#] cm in greatest dimension which are entirely submitted along with representative sections as follows:\n\n([A1]) Tumor, pilot section, including greatest depth of invasion\n([A#]) Proximal margin, en face\n([A#]) Distal margin, en face\n([A#]) Closest deep margin\n([A#]) Additional lesions\n([A#]) [All lymph nodes surrounding the mass designating numbers of candidate lymph nodes per cassette]\n([A#]) [All remaining candidate lymph nodes in the specimen including numbers per cassette]"}]}];
 
+const DATA_BY_CATEGORY = Object.fromEntries(DATA.map((entry) => [entry.category, entry.items || []]));
+const DATA_BY_DISPLAY = Object.fromEntries(
+  DATA.flatMap((entry) => (entry.items || []).map((item) => [item.display, item]))
+);
+
+const GI_BRANCH = {
+  standalone: [
+    { name: 'Principle', text: 'Template content pending.' },
+    { name: 'Scope', text: 'Template content pending.' },
+    { name: 'Safety', text: 'Template content pending.' },
+    { name: 'Dictating Frozen Sections', text: (DATA_BY_DISPLAY['Dictating Frozen Sections'] || {}).text || '' },
+    {
+      name: 'Luminal Biopsies (Esophagus, Stomach, Duodenum, Colon, Bile Duct, etc.)',
+      text: (DATA_BY_DISPLAY['Luminal Biopsies (Esophagus, Stomach, Duodenum, Colon, Bile Duct, etc.)'] || {}).text || ''
+    },
+    {
+      name: 'INTACT Endoscopic Mucosal Resection (EMR/CMR/ESD)/ Trans-Anal Excision Specimens- Oriented and Unoriented',
+      text: (DATA_BY_DISPLAY['INTACT Endoscopic Mucosal Resection (EMR/CMR/ESD)/ Trans-Anal Excision Specimens- Oriented and Unoriented'] || {}).text || ''
+    },
+    {
+      name: 'Polypectomy and Fragmented EMR/ CMR/ ESD Specimens',
+      text: (DATA_BY_DISPLAY['Polypectomy and Fragmented EMR/ CMR/ ESD Specimens'] || {}).text || ''
+    }
+  ],
+  categories: [
+    { name: 'Gallbladder', specimens: DATA_BY_CATEGORY['Gallbladder'] || [] },
+    { name: 'Appendix', specimens: DATA_BY_CATEGORY['Appendix'] || [] },
+    { name: 'Esophagus', specimens: DATA_BY_CATEGORY['Esophagus'] || [] },
+    { name: 'Stomach', specimens: DATA_BY_CATEGORY['Stomach'] || [] },
+    { name: 'Intestine', specimens: DATA_BY_CATEGORY['Intestine'] || [] }
+  ]
+};
+
+const SERVICES = [
+  { name: 'GI', branch: GI_BRANCH },
+  { name: 'GU', branch: { standalone: [], categories: [] } },
+  { name: 'renal', branch: { standalone: [], categories: [] } },
+  { name: 'Breast', branch: { standalone: [], categories: [] } },
+  { name: 'BST', branch: { standalone: [], categories: [] } }
+];
+
 const navEl = document.getElementById('nav');
 const searchEl = document.getElementById('search');
 const previewEl = document.getElementById('preview');
@@ -289,57 +330,117 @@ function setPreview(title, text) {
   previewEl.textContent = text || '';
   setStatus('');
 }
+function createSpecimenButton(serviceName, specimenName, specimenText) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'item';
+  btn.textContent = specimenName;
+
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.item.active').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    setPreview(`${serviceName} → ${specimenName}`, specimenText || '');
+  });
+
+  return btn;
+}
 function render(filterText = '') {
   const q = normalize(filterText);
   navEl.innerHTML = '';
-  let visibleItemCount = 0;
+  let visibleSpecimenCount = 0;
 
-  DATA.forEach((catObj, ci) => {
-    const catName = catObj.category;
-    const items = catObj.items;
+  SERVICES.forEach((serviceObj) => {
+    const serviceName = serviceObj.name;
+    const standalone = serviceObj.branch?.standalone || [];
+    const categories = serviceObj.branch?.categories || [];
 
-    const filtered = items.filter(it => {
-      const hay = normalize(catName + ' ' + (it.display || '') + ' ' + (it.text || ''));
+    const filteredStandalone = standalone.filter((specimen) => {
+      const hay = normalize(serviceName + ' ' + (specimen.name || '') + ' ' + (specimen.text || ''));
       return !q || hay.includes(q);
     });
-    if (!filtered.length) return;
 
-    visibleItemCount += filtered.length;
+    const filteredCategories = categories
+      .map((category) => {
+        const specimens = (category.specimens || []).filter((specimen) => {
+          const specimenName = specimen.display || category.name;
+          const hay = normalize(serviceName + ' ' + category.name + ' ' + specimenName + ' ' + (specimen.text || ''));
+          return !q || hay.includes(q);
+        });
+        return { ...category, specimens };
+      })
+      .filter((category) => category.specimens.length > 0 || !q);
 
-    const catDiv = document.createElement('div');
-    catDiv.className = 'cat';
+    if (!filteredStandalone.length && !filteredCategories.length && q) return;
 
-    const catBtn = document.createElement('button');
-    catBtn.type = 'button';
-    catBtn.innerHTML = `<span>${esc(catName)}</span><span class="meta">${filtered.length}</span>`;
-    catBtn.addEventListener('click', () => catDiv.classList.toggle('open'));
-    catDiv.appendChild(catBtn);
+    const serviceDiv = document.createElement('div');
+    serviceDiv.className = 'cat';
 
-    const itemsDiv = document.createElement('div');
-    itemsDiv.className = 'items';
+    const serviceBtn = document.createElement('button');
+    serviceBtn.type = 'button';
 
-    filtered.forEach((it) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'item';
-      btn.textContent = it.display || catName;
+    const serviceVisibleCount =
+      filteredStandalone.length +
+      filteredCategories.reduce((sum, category) => sum + category.specimens.length, 0);
 
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.item.active').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-        setPreview(it.display || catName, it.text || '');
-      });
+    serviceBtn.innerHTML = `<span>${esc(serviceName)}</span><span class="meta">${serviceVisibleCount}</span>`;
+    serviceBtn.addEventListener('click', () => serviceDiv.classList.toggle('open'));
+    serviceDiv.appendChild(serviceBtn);
 
-      itemsDiv.appendChild(btn);
+    const serviceItemsDiv = document.createElement('div');
+    serviceItemsDiv.className = 'items';
+
+    if (!filteredStandalone.length && !filteredCategories.length) {
+      const empty = document.createElement('div');
+      empty.className = 'meta';
+      empty.textContent = 'No specimens configured yet.';
+      serviceItemsDiv.appendChild(empty);
+    }
+
+    filteredStandalone.forEach((specimen) => {
+      visibleSpecimenCount += 1;
+      serviceItemsDiv.appendChild(createSpecimenButton(serviceName, specimen.name || serviceName, specimen.text || ''));
     });
 
-    catDiv.appendChild(itemsDiv);
-    navEl.appendChild(catDiv);
+    filteredCategories.forEach((category) => {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'cat';
+
+      const categoryBtn = document.createElement('button');
+      categoryBtn.type = 'button';
+      categoryBtn.innerHTML = `<span>${esc(category.name)}</span><span class="meta">${category.specimens.length}</span>`;
+      categoryBtn.addEventListener('click', () => categoryDiv.classList.toggle('open'));
+      categoryDiv.appendChild(categoryBtn);
+
+      const categoryItemsDiv = document.createElement('div');
+      categoryItemsDiv.className = 'items';
+
+      category.specimens.forEach((specimen) => {
+        visibleSpecimenCount += 1;
+        categoryItemsDiv.appendChild(
+          createSpecimenButton(
+            serviceName,
+            specimen.display || category.name,
+            specimen.text || ''
+          )
+        );
+      });
+
+      categoryDiv.appendChild(categoryItemsDiv);
+      if (!filterText && serviceName === 'GI') {
+        categoryDiv.classList.add('open');
+      }
+      serviceItemsDiv.appendChild(categoryDiv);
+    });
+
+    if (!filterText && serviceName === 'GI') {
+      serviceDiv.classList.add('open');
+    }
+
+    serviceDiv.appendChild(serviceItemsDiv);
+    navEl.appendChild(serviceDiv);
   });
 
-  countMetaEl.textContent = `${visibleItemCount} example(s)`;
-  const first = navEl.querySelector('.cat');
-  if (first && !filterText) first.classList.add('open');
+  countMetaEl.textContent = `${visibleSpecimenCount} specimen(s)`;
 }
 
 async function copyText(t) {
@@ -377,6 +478,7 @@ clearBtn.addEventListener('click', () => {
 searchEl.addEventListener('input', (e) => render(e.target.value || ''));
 
 render();
+
 </script>
 </body>
 </html>

@@ -2758,7 +2758,8 @@ function formatTemplateText(text) {
   lines.forEach((line) => {
     const trimmed = line.trim();
     const headingMatch = trimmed.match(headingRegex);
-    if (headingMatch) {
+    const isRepresentativeSectionsLine = /^Representative sections are submitted as follows:\s*$/i.test(trimmed);
+    if (headingMatch && !isRepresentativeSectionsLine) {
       if (currentSection.heading || currentSection.lines.length) {
         sections.push(currentSection);
       }

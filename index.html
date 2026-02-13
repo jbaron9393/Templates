@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GI Category Selector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Google+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>GI Selector</h1>
+        <p>Select a category first, then choose a subcategory.</p>
+      </header>
+
+      <section class="workspace">
+        <div class="panel controls-panel">
+          <h2>Selection</h2>
+
+          <label for="categorySelect" class="field-label">Category</label>
+          <select id="categorySelect" class="dropdown">
+            <option value="">Choose a category...</option>
+          </select>
+
+          <div class="subcategories-block">
+            <h3>Subcategories</h3>
+            <div id="subcategoryContainer" class="chip-group empty-state">
+              Pick a category to load subcategories.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel output-panel">
+          <h2>Editable Output</h2>
+          <div id="output" class="output" contenteditable="true" spellcheck="false">
+            Choose a category and subcategory.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

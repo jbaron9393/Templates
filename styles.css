@@ -1,0 +1,124 @@
+:root {
+  --bg: #f5f7ff;
+  --panel: #ffffff;
+  --text: #1d2534;
+  --muted: #5f6c84;
+  --primary: #2f59e8;
+  --primary-soft: #e9efff;
+  --border: #dbe3ff;
+  --shadow: 0 8px 28px rgba(41, 67, 138, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top right, #ecf1ff, #f8f9ff 45%, #f2f6ff);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem);
+}
+
+header p {
+  margin: 0.3rem 0 1.6rem;
+  color: var(--muted);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.dropdown {
+  width: 100%;
+  border: 1px solid #cbd7ff;
+  border-radius: 10px;
+  padding: 0.56rem 0.65rem;
+  background: white;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.empty-state {
+  color: var(--muted);
+  border: 1px dashed #c7d4ff;
+  border-radius: 12px;
+  padding: 0.8rem;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: #f7f9ff;
+  color: #25304e;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  border-color: #9ab0ff;
+}
+
+.chip.active {
+  background: var(--primary-soft);
+  color: #0f2a7a;
+  border-color: #7d99ff;
+  box-shadow: 0 0 0 3px rgba(47, 89, 232, 0.12);
+}
+
+.output-panel {
+  border-width: 2px;
+}
+
+.output {
+  margin: 0;
+  padding: 0.85rem;
+  min-height: 4rem;
+  border-radius: 12px;
+  background: #f7f9ff;
+  border: 1px solid #d6e0ff;
+  font-family: "Google Sans", "Inter", system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+}

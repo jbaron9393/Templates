@@ -2773,7 +2773,19 @@ function formatTemplateText(text) {
     sections.push(currentSection);
   }
 
-  return sections.map((section) => {
+  const sectionPriority = (heading) => {
+    const normalizedHeading = (heading || '').trim().toLowerCase();
+    if (/^(header examples?|example header)$/.test(normalizedHeading)) return 0;
+    if (/^dictation examples?$/.test(normalizedHeading)) return 1;
+    return 2;
+  };
+
+  const orderedSections = sections
+    .map((section, index) => ({ section, index, priority: sectionPriority(section.heading) }))
+    .sort((a, b) => (a.priority - b.priority) || (a.index - b.index))
+    .map(({ section }) => section);
+
+  return orderedSections.map((section) => {
     const heading = section.heading ? `<div class="template-heading">${esc(section.heading)}:</div>` : '';
     const bodyClass = /dictation example/i.test(section.heading) ? 'dictation-box' : '';
     const body = `<div class="${bodyClass}">${renderSectionBody(section.lines)}</div>`;

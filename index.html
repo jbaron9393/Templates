@@ -16,32 +16,27 @@
     <main class="app">
       <header>
         <h1>GI Selector</h1>
-        <p>Select a category first, then choose a subcategory.</p>
+        <p>Pick a category first, then choose a subcategory.</p>
       </header>
 
-      <section class="workspace">
-        <div class="panel controls-panel">
-          <h2>Selection</h2>
+      <section class="panel">
+        <h2>1) Category</h2>
+        <label for="categorySelect" class="field-label">Select a category</label>
+        <select id="categorySelect" class="dropdown">
+          <option value="">Choose a category...</option>
+        </select>
+      </section>
 
-          <label for="categorySelect" class="field-label">Category</label>
-          <select id="categorySelect" class="dropdown">
-            <option value="">Choose a category...</option>
-          </select>
-
-          <div class="subcategories-block">
-            <h3>Subcategories</h3>
-            <div id="subcategoryContainer" class="chip-group empty-state">
-              Pick a category to load subcategories.
-            </div>
-          </div>
+      <section class="panel">
+        <h2>2) Subcategory</h2>
+        <div id="subcategoryContainer" class="chip-group empty-state">
+          Select a category to load subcategories.
         </div>
+      </section>
 
-        <div class="panel output-panel">
-          <h2>Editable Output</h2>
-          <div id="output" class="output" contenteditable="true" spellcheck="false">
-            Choose a category and subcategory.
-          </div>
-        </div>
+      <section class="panel output-panel">
+        <h2>Output preview</h2>
+        <p id="output" class="output">Choose a category and subcategory.</p>
       </section>
     </main>
 

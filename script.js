@@ -27,7 +27,7 @@ function createChip(label, active, onClick) {
   return button;
 }
 
-function renderCategoryDropdown() {
+function renderCategoryOptions() {
   Object.keys(data).forEach((category) => {
     const option = document.createElement("option");
     option.value = category;
@@ -41,7 +41,7 @@ function renderSubcategories() {
 
   if (!state.selectedCategory) {
     subcategoryContainer.classList.add("empty-state");
-    subcategoryContainer.textContent = "Pick a category to load subcategories.";
+    subcategoryContainer.textContent = "Select a category to load subcategories.";
     return;
   }
 
@@ -53,14 +53,12 @@ function renderSubcategories() {
   }
 
   subcategoryContainer.classList.remove("empty-state");
-
   subcategories.forEach((subcategory) => {
     const chip = createChip(subcategory, state.selectedSubcategory === subcategory, () => {
       state.selectedSubcategory = subcategory;
       renderSubcategories();
       renderOutput();
     });
-
     subcategoryContainer.append(chip);
   });
 }
@@ -81,6 +79,6 @@ categorySelect.addEventListener("change", (event) => {
   renderOutput();
 });
 
-renderCategoryDropdown();
+renderCategoryOptions();
 renderSubcategories();
 renderOutput();

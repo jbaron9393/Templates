@@ -1,4 +1,5 @@
 :root {
+  --bg: #f5f7ff;
   --panel: #ffffff;
   --text: #1d2534;
   --muted: #5f6c84;
@@ -21,25 +22,19 @@ body {
 }
 
 .app {
-  max-width: 1080px;
+  max-width: 980px;
   margin: 2rem auto;
   padding: 0 1rem 2rem;
 }
 
 header h1 {
   margin: 0;
-  font-size: clamp(1.7rem, 2vw + 1rem, 2.45rem);
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem);
 }
 
 header p {
-  margin: 0.35rem 0 1.35rem;
+  margin: 0.3rem 0 1.6rem;
   color: var(--muted);
-}
-
-.workspace {
-  display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
-  gap: 1rem;
 }
 
 .panel {
@@ -48,52 +43,43 @@ header p {
   border-radius: 16px;
   box-shadow: var(--shadow);
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .panel h2 {
-  margin: 0 0 0.8rem;
-  font-size: 1.1rem;
+  margin-top: 0;
+  font-size: 1.05rem;
 }
 
 .field-label {
   display: block;
   margin-bottom: 0.45rem;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
 }
 
 .dropdown {
   width: 100%;
-  border: 1px solid #cdd8ff;
-  border-radius: 11px;
-  padding: 0.62rem 0.7rem;
-  font-size: 0.96rem;
+  border: 1px solid #cbd7ff;
+  border-radius: 10px;
+  padding: 0.56rem 0.65rem;
+  background: white;
   color: var(--text);
-  background: #fbfcff;
-}
-
-.subcategories-block {
-  margin-top: 1rem;
-}
-
-.subcategories-block h3 {
-  margin: 0 0 0.55rem;
-  font-size: 0.94rem;
-  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .chip-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .empty-state {
   color: var(--muted);
   border: 1px dashed #c7d4ff;
   border-radius: 12px;
-  padding: 0.85rem;
+  padding: 0.8rem;
 }
 
 .chip {
@@ -101,8 +87,8 @@ header p {
   background: #f7f9ff;
   color: #25304e;
   border-radius: 999px;
-  padding: 0.52rem 0.9rem;
-  font-size: 0.92rem;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -121,35 +107,18 @@ header p {
 }
 
 .output-panel {
-  display: flex;
-  flex-direction: column;
+  border-width: 2px;
 }
 
 .output {
-  border: 1px solid #d6e0ff;
-  background: #f8faff;
+  margin: 0;
+  padding: 0.85rem;
+  min-height: 4rem;
   border-radius: 12px;
-  min-height: 260px;
-  padding: 0.95rem;
+  background: #f7f9ff;
+  border: 1px solid #d6e0ff;
   font-family: "Google Sans", "Inter", system-ui, sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.45;
-  color: #15356f;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.output:focus {
-  outline: 2px solid #8ea9ff;
-  outline-offset: 2px;
-}
-
-@media (max-width: 860px) {
-  .workspace {
-    grid-template-columns: 1fr;
-  }
-
-  .output {
-    min-height: 210px;
-  }
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
 }

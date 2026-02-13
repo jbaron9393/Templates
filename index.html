@@ -151,15 +151,44 @@
     .preview-content {
       flex: 1;
       overflow-y: auto;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.92rem;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: 0.93rem;
       line-height: 1.5;
       padding: 15px;
       background: #fafafa;
       border: 1px solid #eee;
       border-radius: 8px;
-      white-space: pre-wrap;
       margin-bottom: 12px;
+    }
+
+    .template-section + .template-section {
+      margin-top: 14px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+    }
+
+    .template-heading {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .template-paragraph {
+      margin: 0 0 8px 0;
+      white-space: pre-wrap;
+    }
+
+    .template-line {
+      margin: 0 0 8px 0;
+      white-space: pre-wrap;
+    }
+
+    .dictation-box {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 10px;
     }
 
     .button-row {
@@ -215,6 +244,9 @@
       .item:hover { background:#1a2646; border-color:#CFB87C; }
       .item.active { background:#3a2f18; border-color:#CFB87C; }
       .preview-content { background:#0b1220; border-color:#334155; color:#e2e8f0; }
+      .template-section + .template-section { border-top-color:#334155; }
+      .template-heading { color:#f8fafc; }
+      .dictation-box { background:#111827; border-color:#475569; }
       .meta, .footer { color:#cbd5e1; border-top-color:#334155; }
     }
   </style>
@@ -2523,6 +2555,11 @@ Dr. Marshall | 303-453-9147 | 84422 | carrie.marshall@cuanschutz.edu` },
     ] },
   ]
 };
+const FROZENS_BRANCH = {
+  standalone: [{"name": "Cancelling a FS block", "text": "Cancelling a FS block/slides (once slide stickers are printed)\n*Must be performed by someone with access. If none are available leave a note to be fixed next working day (if weekend/after hours) or email IT.\nSelect Accession Entry/Edit\nSelect Histology Tab\nSelect Stain/Process detail\nChange “delivered” status on FS slides to “cancelled” and click “OK”\nMake sure blue arrow is highlighting FS block you want to cancel in lower left field\nEither right click and select “delete” or press CTRL + D, click “save” and return to Source/Copy To and can load a different protocol and print cassettes.\n*Don’t forget to access the “Save/Intraoperative Activity” and delete the info for the frozen that didn’t happen, BUT leave there if changed to intra-op exam.\nTo delete, select the ordered date for the part and right click and select “delete” or press CTRL + D"}, {"name": "Cryostat troubleshooting", "text": "         Frozen resident – print out and hang daily schedule; highlight and annotate possible infectious cases, highlight and annotate basic clinical history for cases with anticipated frozen sections\n         Frozen resident – complete daily checklist, including decal responsibilities\no   Check ALL grossing stations, specimen shelf and decal/breast cart nightly to ensure all baskets loaded onto processors!!\no   Before the end of the night, triage cases appropriately (to be sure any hold overs take into consideration impact on patient care and timeliness) - any questions should be directed to the senior resident, then frozen faculty, then attending faculty.\n         Frozen resident – return all OR pages/pages with a phone number (1234/54321 indicates a frozen is coming/has arrived to gross room)"}, {"name": "How to add blocks- CoPath", "text": "There have been some issues with adding blocks in CoPath. Sometimes it’s helpful to add a block so all the stains are copied (ie any sentinel lymph node), but sometimes you only want 1 H&E and not the frozen or LDX panel. This can severely impact histology and subsequently the pathologists with delayed cases as well as too many or too few blocks depending what they wanted.  With the addition of the frozen slides please do not copy the stains from a frozen block--- this gives each subsequent block 2 frozen labels.\nAlso, from this window you can add a comment to the block, but you will need to go to Block Detail to add “other block number” in the event you need it to say “BRS, LDX, SNB, SNM, SNE, DERM, etc” if the 1st block does. This helps histology when cutting and triaging their work.\nHere’s how to do each one:\nCOPYING THE STAINS\n-Histology Data Entry/Edit\n-Histology Tab (to see the stain list for each block)\n-Blue arrow needs to be on the part type (top) and block (bottom left) you want to copy\n-At the bottom add 1 block or more blocks knowing ALL blocks will copy ALL stains under the highlighted block\nADDITIONAL BLOCKS 1 H&E\n-Histology Data Entry/Edit\n-Histology Tab (to see the stain list) (if all are H&E can do from Materials Matching tab, but make sure!)\n-Blue arrow needs to be on the part type (top) and the EMPTY ROW (bottom left)\n-At the bottom add 1 block or more blocks and each will get 1 H&E"}, {"name": "Printing Frozen Slide Labels", "text": "Printing Frozen Slide Labels\nAccession the case for a frozen as normal. Refer to the guide if needed.  *use frozen sentinel breast if indicated\nOnce the block has printed- exit Accession Entry/Edit\nFrom the Application Manager (Main) Page click on FROZEN (must be added by IT)\nScan your block. The slides will all have blue check marks beside them. Uncheck H&E.\nClick on Save & Label Slides on the bottom right.\nPick up stickers by printer in accessioning area.\nAdding an additional block to a frozen (A2, A3..etc)\nIn Accession Entry/Edit, Histology tab, make sure blue arrow is next to correct part type.\nIn the bottom left box add 2FS under Blk/Desig, choose white, and add FS under Other Block Number.\nIn the bottom right box, add “Frozen section, initial” and “Frozen section, each additional” in Stain/Process and change the Blk/Desig to _FS.\nClick Save/Engrave. This will ONLY print your block.\nOnce you have a block refer to the top of this document to print the stickers.\nAdding an additional (deeper) slide to an existing frozen block\nFrom the Accession Entry/Edit, Histology tab make sure the blue arrow is next to the correct part type.\nIn the bottom left box make sure the blue arrow is by the correct block.\nIn the bottom right box click an open area and add “Frozen section, each additional” in Stain/Process and hit save.\nExit out of Accession Entry/Edit and double click “FROZEN”\nScan the block and the third slide should have a blue check mark beside it (uncheck any other slides that may have a blue checkmark).\nClick Save & Label Slides. Pick up additional sticker(s) in accessioning area.\nNeuro frozen\nChoose the frozen neuro protocol at accessioning and it will print one frozen slide and one touch prep slide.\nIf a frozen gets CANCELLED OR CHANGED TO INTRA-OP\nTell lab aides, gross techs or PAs that this change has been made and the frozen needs to be cancelled/changed and give them the cassette (the slides can be thrown away).\nIf on weekend/on call time- leave a note for Monday morning or email IT for assistance."}, {"name": "Responsiblities", "text": "Unable to auto-load this Word document in the browser viewer (Responsiblities.docx): File is not a zip file. Please open the source file from docs/Frozens directly."}, {"name": "Stainline", "text": "Unable to auto-load this Word document in the browser viewer (Stainline.docx): File is not a zip file. Please open the source file from docs/Frozens directly."}],
+  categories: []
+};
+
 const SERVICES = [
   { name: 'GI', branch: GI_BRANCH },
   { name: 'Biopsies (non-derm)', branch: BIOPSIES_NON_DERM_BRANCH },
@@ -2531,6 +2568,7 @@ const SERVICES = [
   { name: 'GYN 2', branch: GYN2_BRANCH },
   { name: 'Breast', branch: BREAST_BRANCH },
   { name: 'Bone Marrow / Lymphomas', branch: HEME_BRANCH },
+  { name: 'Frozens', branch: FROZENS_BRANCH },
   { name: 'renal', branch: { standalone: [], categories: [] } },
   { name: 'BST', branch: BST_BRANCH }
 ];
@@ -2546,6 +2584,8 @@ const copyBtn = document.getElementById('copyBtn');
 const copyHeaderBtn = document.getElementById('copyHeaderBtn');
 const clearBtn = document.getElementById('clearBtn');
 
+let currentPreviewRawText = '';
+
 function esc(s) {
   return (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
@@ -2553,9 +2593,127 @@ function normalize(s) {
   return (s || '').toLowerCase().replace(/\s+/g, ' ').trim();
 }
 function setStatus(msg) { statusEl.textContent = msg || ''; }
+
+function splitInlineListItems(rawLine) {
+  const text = (rawLine || '').trim();
+  if (!text) return [''];
+
+  const markerRegex = /(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s+/g;
+  const starts = [];
+  let match;
+
+  while ((match = markerRegex.exec(text)) !== null) {
+    starts.push(match.index);
+  }
+
+  if (starts.length < 2) {
+    return [text];
+  }
+
+  const parts = [];
+  const prefix = text.slice(0, starts[0]).trim();
+  if (prefix) parts.push(prefix);
+
+  for (let i = 0; i < starts.length; i += 1) {
+    const start = starts[i];
+    const end = i + 1 < starts.length ? starts[i + 1] : text.length;
+    const chunk = text.slice(start, end).trim();
+    if (chunk) parts.push(chunk);
+  }
+
+  return parts;
+}
+
+function renderSectionBody(lines) {
+  const fragments = [];
+  let paragraphBuffer = [];
+  let listBuffer = [];
+
+  const flushParagraph = () => {
+    if (!paragraphBuffer.length) return;
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    paragraphBuffer = [];
+  };
+
+  const flushList = () => {
+    if (!listBuffer.length) return;
+    fragments.push(listBuffer.map((item) => `<p class="template-line">${esc(item)}</p>`).join(''));
+    listBuffer = [];
+  };
+
+  lines.forEach((rawLine) => {
+    const expandedLines = splitInlineListItems(rawLine || '');
+
+    expandedLines.forEach((expandedLine) => {
+      const line = (expandedLine || '').trim();
+      if (!line) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
+      const listMatch = line.match(/^(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s*(.*)$/);
+      if (listMatch) {
+        flushParagraph();
+        const marker = listMatch[1];
+        const content = listMatch[2] || '';
+        listBuffer.push(`${marker} ${content}`.trim());
+        return;
+      }
+
+      flushList();
+      paragraphBuffer.push(line);
+    });
+  });
+
+  flushParagraph();
+  flushList();
+
+  if (!fragments.length) {
+    return '<p class="template-paragraph"></p>';
+  }
+
+  return fragments.join('');
+}
+
+function formatTemplateText(text) {
+  const cleaned = (text || '').trim();
+  if (!cleaned) return '<p class="template-paragraph"></p>';
+
+  const headingRegex = /^([A-Za-z][A-Za-z0-9\s/&()\-]+):\s*$/;
+  const lines = cleaned.split(/\r?\n/);
+  const sections = [];
+  let currentSection = { heading: '', lines: [] };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    const headingMatch = trimmed.match(headingRegex);
+    if (headingMatch) {
+      if (currentSection.heading || currentSection.lines.length) {
+        sections.push(currentSection);
+      }
+      currentSection = { heading: headingMatch[1], lines: [] };
+    } else {
+      currentSection.lines.push(line);
+    }
+  });
+
+  if (currentSection.heading || currentSection.lines.length) {
+    sections.push(currentSection);
+  }
+
+  return sections.map((section) => {
+    const heading = section.heading ? `<div class="template-heading">${esc(section.heading)}:</div>` : '';
+    const bodyClass = /dictation example/i.test(section.heading) ? 'dictation-box' : '';
+    const body = `<div class="${bodyClass}">${renderSectionBody(section.lines)}</div>`;
+    return `<section class="template-section">${heading}${body}</section>`;
+  }).join('');
+}
+
 function setPreview(title, text) {
   previewTitleEl.textContent = title || 'Template';
-  previewEl.textContent = text || '';
+  currentPreviewRawText = text || '';
+  previewEl.innerHTML = formatTemplateText(text || '');
   setStatus('');
 }
 function createSpecimenButton(serviceName, specimenName, specimenText) {
@@ -2677,7 +2835,7 @@ async function copyText(t) {
 }
 
 copyBtn.addEventListener('click', async () => {
-  const t = previewEl.textContent || '';
+  const t = currentPreviewRawText || '';
   if (!t.trim()) return setStatus('Nothing to copy.');
   const ok = await copyText(t);
   if (!ok) return setStatus('Copy failed (clipboard permission).');

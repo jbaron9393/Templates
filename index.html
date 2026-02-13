@@ -2640,7 +2640,7 @@ const SERVICES = [
   { name: 'Pediatric Tumors', branch: toCategoryBasedBranch(PEDIATRIC_TUMORS_BRANCH, 'General') },
   { name: 'Renal', branch: toCategoryBasedBranch(RENAL_BRANCH, 'General') },
   { name: 'BST', branch: toCategoryBasedBranch(BST_BRANCH, 'General') }
-];
+].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
 
 const navEl = document.getElementById('nav');
 const searchEl = document.getElementById('search');

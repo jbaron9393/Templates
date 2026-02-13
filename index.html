@@ -2599,25 +2599,47 @@ const RENAL_BRANCH = {
   categories: []
 };
 
+function toCategoryBasedBranch(branch, defaultCategoryName = 'General') {
+  const standalone = (branch && Array.isArray(branch.standalone)) ? branch.standalone : [];
+  const categories = (branch && Array.isArray(branch.categories)) ? branch.categories : [];
+
+  if (!standalone.length) {
+    return branch;
+  }
+
+  const standaloneCategory = {
+    name: defaultCategoryName,
+    specimens: standalone.map((item) => ({
+      display: item.name || defaultCategoryName,
+      text: item.text || ''
+    }))
+  };
+
+  return {
+    standalone: [],
+    categories: [standaloneCategory, ...categories]
+  };
+}
+
 const SERVICES = [
-  { name: 'GI', branch: GI_BRANCH },
-  { name: 'Biopsies (non-derm)', branch: BIOPSIES_NON_DERM_BRANCH },
-  { name: 'GU', branch: GU_BRANCH },
-  { name: 'GYN1', branch: GYN1_BRANCH },
-  { name: 'GYN 2', branch: GYN2_BRANCH },
-  { name: 'Breast', branch: BREAST_BRANCH },
-  { name: 'Bone Marrow / Lymphomas', branch: HEME_BRANCH },
-  { name: 'Frozens', branch: FROZENS_BRANCH },
-  { name: 'Derm', branch: DERM_BRANCH },
-  { name: 'Faxitron', branch: FAXITRON_BRANCH },
-  { name: 'HNE', branch: HNE_BRANCH },
-  { name: 'Heart', branch: HEART_BRANCH },
-  { name: 'Liver', branch: LIVER_BRANCH },
-  { name: 'Lung', branch: LUNG_BRANCH },
-  { name: 'Neuro and Eye', branch: NEURO_AND_EYE_BRANCH },
-  { name: 'Pediatric Tumors', branch: PEDIATRIC_TUMORS_BRANCH },
-  { name: 'Renal', branch: RENAL_BRANCH },
-  { name: 'BST', branch: BST_BRANCH }
+  { name: 'GI', branch: toCategoryBasedBranch(GI_BRANCH, 'General') },
+  { name: 'Biopsies (non-derm)', branch: toCategoryBasedBranch(BIOPSIES_NON_DERM_BRANCH, 'General') },
+  { name: 'GU', branch: toCategoryBasedBranch(GU_BRANCH, 'General') },
+  { name: 'GYN1', branch: toCategoryBasedBranch(GYN1_BRANCH, 'General') },
+  { name: 'GYN 2', branch: toCategoryBasedBranch(GYN2_BRANCH, 'General') },
+  { name: 'Breast', branch: toCategoryBasedBranch(BREAST_BRANCH, 'General') },
+  { name: 'Bone Marrow / Lymphomas', branch: toCategoryBasedBranch(HEME_BRANCH, 'General') },
+  { name: 'Frozens', branch: toCategoryBasedBranch(FROZENS_BRANCH, 'General') },
+  { name: 'Derm', branch: toCategoryBasedBranch(DERM_BRANCH, 'General') },
+  { name: 'Faxitron', branch: toCategoryBasedBranch(FAXITRON_BRANCH, 'General') },
+  { name: 'HNE', branch: toCategoryBasedBranch(HNE_BRANCH, 'General') },
+  { name: 'Heart', branch: toCategoryBasedBranch(HEART_BRANCH, 'General') },
+  { name: 'Liver', branch: toCategoryBasedBranch(LIVER_BRANCH, 'General') },
+  { name: 'Lung', branch: toCategoryBasedBranch(LUNG_BRANCH, 'General') },
+  { name: 'Neuro and Eye', branch: toCategoryBasedBranch(NEURO_AND_EYE_BRANCH, 'General') },
+  { name: 'Pediatric Tumors', branch: toCategoryBasedBranch(PEDIATRIC_TUMORS_BRANCH, 'General') },
+  { name: 'Renal', branch: toCategoryBasedBranch(RENAL_BRANCH, 'General') },
+  { name: 'BST', branch: toCategoryBasedBranch(BST_BRANCH, 'General') }
 ];
 
 const navEl = document.getElementById('nav');

@@ -2852,7 +2852,13 @@ function render(filterText = '') {
       filteredCategories.reduce((sum, category) => sum + category.specimens.length, 0);
 
     serviceBtn.innerHTML = `<span>${esc(serviceName)}</span><span class="meta">${serviceVisibleCount}</span>`;
-    serviceBtn.addEventListener('click', () => serviceDiv.classList.toggle('open'));
+    serviceBtn.addEventListener('click', () => {
+      const willOpen = !serviceDiv.classList.contains('open');
+      navEl.querySelectorAll(':scope > .cat.open').forEach((openCat) => {
+        if (openCat !== serviceDiv) openCat.classList.remove('open');
+      });
+      serviceDiv.classList.toggle('open', willOpen);
+    });
     serviceDiv.appendChild(serviceBtn);
 
     const serviceItemsDiv = document.createElement('div');
@@ -2877,7 +2883,13 @@ function render(filterText = '') {
       const categoryBtn = document.createElement('button');
       categoryBtn.type = 'button';
       categoryBtn.innerHTML = `<span>${esc(category.name)}</span><span class="meta">${category.specimens.length}</span>`;
-      categoryBtn.addEventListener('click', () => categoryDiv.classList.toggle('open'));
+      categoryBtn.addEventListener('click', () => {
+        const willOpen = !categoryDiv.classList.contains('open');
+        serviceItemsDiv.querySelectorAll(':scope > .cat.open').forEach((openCat) => {
+          if (openCat !== categoryDiv) openCat.classList.remove('open');
+        });
+        categoryDiv.classList.toggle('open', willOpen);
+      });
       categoryDiv.appendChild(categoryBtn);
 
       const categoryItemsDiv = document.createElement('div');
@@ -2895,15 +2907,8 @@ function render(filterText = '') {
       });
 
       categoryDiv.appendChild(categoryItemsDiv);
-      if (!filterText && serviceName === 'GI') {
-        categoryDiv.classList.add('open');
-      }
       serviceItemsDiv.appendChild(categoryDiv);
     });
-
-    if (!filterText && serviceName === 'GI') {
-      serviceDiv.classList.add('open');
-    }
 
     serviceDiv.appendChild(serviceItemsDiv);
     navEl.appendChild(serviceDiv);

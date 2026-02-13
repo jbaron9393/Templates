@@ -114,6 +114,9 @@
     }
     .cat > button:hover { background:#f2f2f2; }
     .cat.open > button { background:#fff8e7; border-bottom:1px solid #eee; }
+    .tree-header { display:flex; align-items:center; gap:8px; min-width:0; }
+    .tree-toggle { font-size:0.8rem; color:#6b7280; transition: transform 0.2s; display:inline-block; }
+    .cat > button[aria-expanded="true"] .tree-toggle { transform: rotate(90deg); }
 
     .items {
       display: none;
@@ -244,6 +247,7 @@
       .cat > button { background:#0b1220; color:#e2e8f0; }
       .cat > button:hover { background:#111b31; }
       .cat.open > button { background:#3a2f18; border-bottom-color:#334155; }
+      .tree-toggle { color:#cbd5e1; }
       .items { background:#111827; }
       .item { background:#0f172a; color:#e2e8f0; border-color:#475569; }
       .item:hover { background:#1a2646; border-color:#CFB87C; }
@@ -2729,6 +2733,20 @@ function createSpecimenButton(serviceName, specimenName, specimenText) {
 
   return btn;
 }
+
+function setBranchExpanded(branchDiv, branchBtn, open) {
+  branchDiv.classList.toggle('open', open);
+  branchBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function buildBranchButton(label, count, onToggle) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.setAttribute('aria-expanded', 'false');
+  button.innerHTML = `<span class="tree-header"><span class="tree-toggle">▸</span><span>${esc(label)}</span></span><span class="meta">${count}</span>`;
+  button.addEventListener('click', onToggle);
+  return button;
+}
+
 function render(filterText = '') {
   const q = normalize(filterText);
   navEl.innerHTML = '';
@@ -2760,15 +2778,14 @@ function render(filterText = '') {
     const serviceDiv = document.createElement('div');
     serviceDiv.className = 'cat';
 
-    const serviceBtn = document.createElement('button');
-    serviceBtn.type = 'button';
-
     const serviceVisibleCount =
       filteredStandalone.length +
       filteredCategories.reduce((sum, category) => sum + category.specimens.length, 0);
 
-    serviceBtn.innerHTML = `<span>${esc(serviceName)}</span><span class="meta">${serviceVisibleCount}</span>`;
-    serviceBtn.addEventListener('click', () => serviceDiv.classList.toggle('open'));
+    const serviceBtn = buildBranchButton(serviceName, serviceVisibleCount, () => {
+      const isOpen = !serviceDiv.classList.contains('open');
+      setBranchExpanded(serviceDiv, serviceBtn, isOpen);
+    });
     serviceDiv.appendChild(serviceBtn);
 
     const serviceItemsDiv = document.createElement('div');
@@ -2790,10 +2807,10 @@ function render(filterText = '') {
       const categoryDiv = document.createElement('div');
       categoryDiv.className = 'cat';
 
-      const categoryBtn = document.createElement('button');
-      categoryBtn.type = 'button';
-      categoryBtn.innerHTML = `<span>${esc(category.name)}</span><span class="meta">${category.specimens.length}</span>`;
-      categoryBtn.addEventListener('click', () => categoryDiv.classList.toggle('open'));
+      const categoryBtn = buildBranchButton(category.name, category.specimens.length, () => {
+        const isOpen = !categoryDiv.classList.contains('open');
+        setBranchExpanded(categoryDiv, categoryBtn, isOpen);
+      });
       categoryDiv.appendChild(categoryBtn);
 
       const categoryItemsDiv = document.createElement('div');
@@ -2812,13 +2829,13 @@ function render(filterText = '') {
 
       categoryDiv.appendChild(categoryItemsDiv);
       if (!filterText && serviceName === 'GI') {
-        categoryDiv.classList.add('open');
+        setBranchExpanded(categoryDiv, categoryBtn, true);
       }
       serviceItemsDiv.appendChild(categoryDiv);
     });
 
     if (!filterText && serviceName === 'GI') {
-      serviceDiv.classList.add('open');
+      setBranchExpanded(serviceDiv, serviceBtn, true);
     }
 
     serviceDiv.appendChild(serviceItemsDiv);

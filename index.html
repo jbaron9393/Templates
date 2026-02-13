@@ -149,45 +149,23 @@
     }
 
     .doc-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
+      display: block;
+      padding: 8px 10px;
       border-radius: 8px;
-      border: 1px solid #e5e7eb;
-      background: #f8fafc;
+      border: 1px solid #dbe5ff;
+      background: #f3f7ff;
       text-decoration: none;
-      color: #334155;
+      color: #1e3a8a;
       font-weight: 600;
       line-height: 1.3;
       transition: all 0.2s ease;
     }
 
     .doc-link:hover {
-      background: #fff8e7;
-      border-color: #CFB87C;
-      color: #111827;
+      background: #e8f0ff;
+      border-color: #93c5fd;
+      color: #1e40af;
       transform: translateY(-1px);
-    }
-
-    .doc-link::before {
-      font-size: 0.9rem;
-      padding: 2px 6px;
-      border-radius: 999px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .doc-link.pdf::before {
-      content: 'PDF';
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .doc-link.doc::before {
-      content: 'DOC';
-      background: #dbeafe;
-      color: #1e3a8a;
     }
 
     .preview-title {
@@ -296,10 +274,8 @@
       .template-heading { color:#f8fafc; }
       .dictation-box { background:#111827; border-color:#475569; }
       .meta, .footer { color:#cbd5e1; border-top-color:#334155; }
-      .doc-link { background:#0f172a; border-color:#475569; color:#e2e8f0; }
-      .doc-link:hover { background:#1a2646; border-color:#CFB87C; color:#f8fafc; }
-      .doc-link.pdf::before { background:#7f1d1d; color:#fecaca; }
-      .doc-link.doc::before { background:#1e3a8a; color:#bfdbfe; }
+      .doc-link { background:#13203a; border-color:#334c77; color:#bfdbfe; }
+      .doc-link:hover { background:#1e3a66; border-color:#60a5fa; color:#dbeafe; }
     }
   </style>
 </head>
@@ -2787,8 +2763,7 @@ function createDocLinksRow(serviceName, categoryName = '') {
     a.href = link.href;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    const extension = (link.href.split('.').pop() || '').toLowerCase();
-    a.className = `doc-link ${extension === 'pdf' ? 'pdf' : 'doc'}`;
+    a.className = 'doc-link';
     a.textContent = link.label;
     wrap.appendChild(a);
   });

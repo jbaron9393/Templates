@@ -179,13 +179,8 @@
       white-space: pre-wrap;
     }
 
-    .template-list {
-      margin: 0 0 10px 18px;
-      padding-left: 12px;
-    }
-
-    .template-list li {
-      margin-bottom: 4px;
+    .template-line {
+      margin: 0 0 8px 0;
       white-space: pre-wrap;
     }
 
@@ -2636,7 +2631,7 @@ function renderSectionBody(lines) {
 
   const flushList = () => {
     if (!listBuffer.length) return;
-    fragments.push(`<ul class="template-list">${listBuffer.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`);
+    fragments.push(listBuffer.map((item) => `<p class="template-line">${esc(item)}</p>`).join(''));
     listBuffer = [];
   };
 

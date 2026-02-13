@@ -426,20 +426,24 @@ function render(filterText = '') {
       });
 
       categoryDiv.appendChild(categoryItemsDiv);
+      if (!filterText && serviceName === 'GI') {
+        categoryDiv.classList.add('open');
+      }
       serviceItemsDiv.appendChild(categoryDiv);
     });
+
+    if (!filterText && serviceName === 'GI') {
+      serviceDiv.classList.add('open');
+    }
 
     serviceDiv.appendChild(serviceItemsDiv);
     navEl.appendChild(serviceDiv);
   });
 
   countMetaEl.textContent = `${visibleSpecimenCount} specimen(s)`;
-  const first = navEl.querySelector('.cat');
-  if (first && !filterText) first.classList.add('open');
 }
 
 async function copyText(t) {
-
   try { await navigator.clipboard.writeText(t); return true; }
   catch (e) { return false; }
 }

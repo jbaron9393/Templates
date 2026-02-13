@@ -151,15 +151,49 @@
     .preview-content {
       flex: 1;
       overflow-y: auto;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.92rem;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: 0.93rem;
       line-height: 1.5;
       padding: 15px;
       background: #fafafa;
       border: 1px solid #eee;
       border-radius: 8px;
-      white-space: pre-wrap;
       margin-bottom: 12px;
+    }
+
+    .template-section + .template-section {
+      margin-top: 14px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+    }
+
+    .template-heading {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .template-paragraph {
+      margin: 0 0 8px 0;
+      white-space: pre-wrap;
+    }
+
+    .template-list {
+      margin: 0 0 10px 18px;
+      padding-left: 12px;
+    }
+
+    .template-list li {
+      margin-bottom: 4px;
+      white-space: pre-wrap;
+    }
+
+    .dictation-box {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 10px;
     }
 
     .button-row {
@@ -215,6 +249,9 @@
       .item:hover { background:#1a2646; border-color:#CFB87C; }
       .item.active { background:#3a2f18; border-color:#CFB87C; }
       .preview-content { background:#0b1220; border-color:#334155; color:#e2e8f0; }
+      .template-section + .template-section { border-top-color:#334155; }
+      .template-heading { color:#f8fafc; }
+      .dictation-box { background:#111827; border-color:#475569; }
       .meta, .footer { color:#cbd5e1; border-top-color:#334155; }
     }
   </style>
@@ -2546,6 +2583,8 @@ const copyBtn = document.getElementById('copyBtn');
 const copyHeaderBtn = document.getElementById('copyHeaderBtn');
 const clearBtn = document.getElementById('clearBtn');
 
+let currentPreviewRawText = '';
+
 function esc(s) {
   return (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
@@ -2553,9 +2592,127 @@ function normalize(s) {
   return (s || '').toLowerCase().replace(/\s+/g, ' ').trim();
 }
 function setStatus(msg) { statusEl.textContent = msg || ''; }
+
+function splitInlineListItems(rawLine) {
+  const text = (rawLine || '').trim();
+  if (!text) return [''];
+
+  const markerRegex = /(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s+/g;
+  const starts = [];
+  let match;
+
+  while ((match = markerRegex.exec(text)) !== null) {
+    starts.push(match.index);
+  }
+
+  if (starts.length < 2) {
+    return [text];
+  }
+
+  const parts = [];
+  const prefix = text.slice(0, starts[0]).trim();
+  if (prefix) parts.push(prefix);
+
+  for (let i = 0; i < starts.length; i += 1) {
+    const start = starts[i];
+    const end = i + 1 < starts.length ? starts[i + 1] : text.length;
+    const chunk = text.slice(start, end).trim();
+    if (chunk) parts.push(chunk);
+  }
+
+  return parts;
+}
+
+function renderSectionBody(lines) {
+  const fragments = [];
+  let paragraphBuffer = [];
+  let listBuffer = [];
+
+  const flushParagraph = () => {
+    if (!paragraphBuffer.length) return;
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    paragraphBuffer = [];
+  };
+
+  const flushList = () => {
+    if (!listBuffer.length) return;
+    fragments.push(`<ul class="template-list">${listBuffer.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`);
+    listBuffer = [];
+  };
+
+  lines.forEach((rawLine) => {
+    const expandedLines = splitInlineListItems(rawLine || '');
+
+    expandedLines.forEach((expandedLine) => {
+      const line = (expandedLine || '').trim();
+      if (!line) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
+      const listMatch = line.match(/^(\(\[?[A-Za-z0-9#-]+\]?\)|\d+\.)\s*(.*)$/);
+      if (listMatch) {
+        flushParagraph();
+        const marker = listMatch[1];
+        const content = listMatch[2] || '';
+        listBuffer.push(`${marker} ${content}`.trim());
+        return;
+      }
+
+      flushList();
+      paragraphBuffer.push(line);
+    });
+  });
+
+  flushParagraph();
+  flushList();
+
+  if (!fragments.length) {
+    return '<p class="template-paragraph"></p>';
+  }
+
+  return fragments.join('');
+}
+
+function formatTemplateText(text) {
+  const cleaned = (text || '').trim();
+  if (!cleaned) return '<p class="template-paragraph"></p>';
+
+  const headingRegex = /^([A-Za-z][A-Za-z0-9\s/&()\-]+):\s*$/;
+  const lines = cleaned.split(/\r?\n/);
+  const sections = [];
+  let currentSection = { heading: '', lines: [] };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    const headingMatch = trimmed.match(headingRegex);
+    if (headingMatch) {
+      if (currentSection.heading || currentSection.lines.length) {
+        sections.push(currentSection);
+      }
+      currentSection = { heading: headingMatch[1], lines: [] };
+    } else {
+      currentSection.lines.push(line);
+    }
+  });
+
+  if (currentSection.heading || currentSection.lines.length) {
+    sections.push(currentSection);
+  }
+
+  return sections.map((section) => {
+    const heading = section.heading ? `<div class="template-heading">${esc(section.heading)}:</div>` : '';
+    const bodyClass = /dictation example/i.test(section.heading) ? 'dictation-box' : '';
+    const body = `<div class="${bodyClass}">${renderSectionBody(section.lines)}</div>`;
+    return `<section class="template-section">${heading}${body}</section>`;
+  }).join('');
+}
+
 function setPreview(title, text) {
   previewTitleEl.textContent = title || 'Template';
-  previewEl.textContent = text || '';
+  currentPreviewRawText = text || '';
+  previewEl.innerHTML = formatTemplateText(text || '');
   setStatus('');
 }
 function createSpecimenButton(serviceName, specimenName, specimenText) {
@@ -2677,7 +2834,7 @@ async function copyText(t) {
 }
 
 copyBtn.addEventListener('click', async () => {
-  const t = previewEl.textContent || '';
+  const t = currentPreviewRawText || '';
   if (!t.trim()) return setStatus('Nothing to copy.');
   const ok = await copyText(t);
   if (!ok) return setStatus('Copy failed (clipboard permission).');

@@ -2927,6 +2927,33 @@ function setPreview(title, text) {
   previewEl.innerHTML = formatTemplateText(text || '');
   setStatus('');
 }
+
+function buildSubcategorySnippet(categoryName, specimens = []) {
+  const candidate = (specimens || [])
+    .map((specimen) => (specimen.text || '').trim())
+    .find(Boolean);
+
+  if (!candidate) {
+    return `No quick snippet is available for ${categoryName} yet. Select a template below for the full text.`;
+  }
+
+  const lines = candidate
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const snippet = [];
+  let totalLength = 0;
+
+  for (const line of lines) {
+    if (snippet.length >= 4 || totalLength >= 420) break;
+    snippet.push(line);
+    totalLength += line.length;
+  }
+
+  return snippet.join('\n') || candidate.slice(0, 420);
+}
+
 function createSpecimenButton(serviceName, specimenName, specimenText) {
   const btn = document.createElement('button');
   btn.type = 'button';
@@ -3017,6 +3044,11 @@ function render(filterText = '') {
           if (openCat !== categoryDiv) openCat.classList.remove('open');
         });
         categoryDiv.classList.toggle('open', willOpen);
+
+        if (willOpen) {
+          const snippet = buildSubcategorySnippet(category.name, category.specimens);
+          setPreview(`${serviceName} → ${category.name}`, snippet);
+        }
       });
       categoryDiv.appendChild(categoryBtn);
 

@@ -363,32 +363,14 @@ const GI_BRANCH = {
 };
 
 const BIOPSIES_NON_DERM_BRANCH = {
-  "standalone": [],
-  "categories": [
+  standalone: [],
+  categories: [
     {
-      "name": "GI",
-      "specimens": [
-        {
-          "display": "GI biopsy header formatting — overview",
-          "text": "Gastrointestinal Biopsy Final Diagnosis Header Formatting and Verbiage\nThe general format for GI biopsies is as follows:\nLetter Designation) Site, sub-site, additional descriptor, procedure:\n-\nFor example:\nC) Colon, transverse, polyps x 5, polypectomy:\n-"
-        },
-        {
-          "display": "GI biopsy header formatting — site notes",
-          "text": "“Site” notes:\n(1) The commonly biopsied sites (lettered in the list below) and their subsites (numbered) include:\n(a) Esophagus\n(1) upper third\n(2) middle third\n(3) lower third\n(b) Gastroesophageal junction\n(c) Stomach\n(1) cardia\n(2) fundus\n(3) body\n(4) antrum\n(d) Duodenum\n(1) bulb\n(2) second part\n(3) third part\n(4) fourth part\n(e) Jejunum\n(f) Terminal ileum\n(g) Cecum\n(h) Colon\n(1) ascending\n(2) transverse\n(3) descending\n(4) sigmoid\n(i) Rectum\n(j) Anus\n(2) The requisition often incorrectly labels the site.  Please recognize this and do not repeat the error.\n(a) For example:\n(1) The gastroesophageal junction is a site, not a subsite of the esophagus\n(2) The terminal ileum is a site, not a subsite of the colon\n(3) The cecum, rectum, and anus are sites, not subsites of the colon\n(3) Case 1.  More than one subsite is sampled from the same site\n(a) List the site followed by a comma and then the subsites\n(b) For example:\n(1) Stomach, body and antrum, biopsy\n(2) Colon, ascending, transverse, and descending, biopsy\n(4) Case 2.  More than one site is sampled in the same container, as are multiple subsites\n(a) This gets more cumbersome; try to make it simple\n(b) For example, for the third container (part C):\n(1) Requisition says \"Major Site: Esophagus\" and \"Location: lower third,\ngastroesophageal junction\"\n(a) You say…\nC) Lower third of the esophagus and gastroesophageal junction, biopsy\n(2) Requisition says \"Major site: Colon\" and \"Location: cecum, ascending, transverse\"\n(a) You say…\nC) Cecum, ascending colon, and transverse colon, biopsy\n(3) Requisition says \"Major site: Colon\" and \"Location: sigmoid and rectum\"\n(a) You say…\nC)  Sigmoid colon and rectum"
-        },
-        {
-          "display": "GI biopsy header formatting — additional descriptor notes",
-          "text": "\"Additional descriptor\" notes:\n(1) These are sometimes specified.\n(2) Always include the following if they are specified\n(a) polyps\n(b) nodules\n(c) masses\n(3) Do not use \"normal\" or \"random\" in the additional descriptor even if it is written on the requisition\n(4) Do not use their guessed diagnosis in the additional descriptor even if it is written on the requisition, which are mostly the following:\n(a) hyperplastic polyp or ?hyperplastic polyp\n(b) sessile serrated adenoma (or SSA or SSP) or ?SSA\n(c) benign fundic gland polyp\n(5) For example:\n(a) Requisition for part C says \"Major site: Colon\" and \"Location: transverse\" and \"Finding:\npolyp\" and \"Maneuver: biopsy\"\n(1) You say…\nC) Colon, sigmoid, polyp, biopsy\n(b) Requisition says \"Major site: Colon\" and \"Location: transverse, sigmoid\" and \"Finding: two 4\nmm polyps\" and \"Maneuver: polypectomy\"\n(1) You say…\nC) Colon, transverse and sigmoid, 4 mm polyps x 2, polypectomy\n(c) Requisition says \"Major site: Stomach\" and \"Location: antrum\" and \"Finding: ulcer\" and\n\"Maneuver: biopsy\"\n(1) You say…\nC) Stomach, antrum, ulcer, biopsy"
-        },
-        {
-          "display": "GI biopsy header formatting — procedure notes",
-          "text": "“Procedure” notes:\n(1) Most common procedures from the endoscopy lab include:\n(a) Biopsy\n(b) Polypectomy\n(c) Endoscopic mucosal resection\n(2) The procedure is always singular.  For example, use “biopsy” and never “biopsies”.\n(3) The procedure is usually found on the requisition under “Maneuver”.  This is not always correct but it is the best starting point (e.g. sometimes an endoscopic mucosal resection is labeled as “polypectomy”); this might be indicated somewhere else on the requisition, usually in the \"Impressions\" section."
-        }
-      ]
+      name: 'GI',
+      specimens: []
     }
   ]
 };
-
 const GU_BRANCH = {
   standalone: [
     {
@@ -2139,451 +2121,13 @@ const HEME_BRANCH = {
   standalone: [],
   categories: [
     {
-      name: `Bone Marrow`,
-      specimens: [
-        {
-          display: `Bone marrow accessioning and grossing`,
-          text: `Accessioning
-If there is a bar code for the order, put cursor in the Order Entry Number field and scan the bar code and the top two fields will auto populate.
-If there is no bar code for the order, enter the MRN and choose the correct encounter and order on the requisition like other surgical cases.
-If choosing the encounter from the list vs typing the whole thing in, note it may be at the way bottom (even though out of order date-wise) so scroll to the bottom
-If an order number populates- confirm it is the correct order by double checking on the requisition.
-Change specimen class to BM-R and not S class.
-In the first Part Type field type ‘bone’ and choose ‘Bone marrow, biopsy’ for A unless it’s a clot only.
-The description auto populates and updates the collected date. If one isn’t provided on the containers or requisition (typically handwritten at the top) default 09:00. The BM clinic orders these several days before the procedure so that date/time is not usually accurate.
-If two containers are submitted, the Bone Marrow, biopsy is A and Bone Marrow, clot is B.
-Specimen C (or last specimen in a BM case) is ‘Bone marrow, only aspirate slides’ and the description is prepopulated.
-This is where we print 8 ASP/TP slides for the smears using the part C label that can just go on the requisition.
-Part C will not be mentioned in the gross or headers.
-Confirm Client and Submitting Phys fields have been completed and are correct.
-Under the ADT/Staff tab, fill in the Pathologist on heme 1 (no service needed)
-Under the Histology tab, click Save/Engrave
-When the stickers print, put them on the requisition and the container and scan the paperwork.
-From the Main CoPath menu click on FROZEN/ FROZEN UCH where frozen slide labels are printed and scan the C part label.
-Click on ‘Save & Label Slides’ and they will print where frozen label slides print.
-Staple these (between the top 2 stickers) to the top left-hand corner of the clean copy and put in the heme file of clean requisitions.
-Headers
-A) Bone marrow, core, biopsy:
--
-B) Bone marrow, clot, biopsy:
--
-Gross Notes
-Both can be submitted in bags or paper, but should be wrapped somehow--- most commonly in bags
-Core needs to be in formalin for an hour or two prior to decal then must be put in decal for 30 minutes.
-Use timer or alarm if needed- can batch for the end of the day—can be over decaled
-Once decaled- rinse cassettes in water and put core AND clot in big rack
-(DO NOT RUN ON BIOPSIES)
-Can split clot if too big – bisect in half and put each half in a bag
-Gross templates
-Received are two formalin containers both labeled “[patients name/MRN]” without additional designators.
-A) Containing a hard cylindrical bone core, [ __] x 0.2 cm, which is submitted in toto following decalcification in (A1).
-B) Containing a cylindrical dark red blood clot, [__diameter x __ thickness] cm, which is submitted in toto in (B1).`
-        }
-      ]
+      name: 'Bone Marrow',
+      specimens: []
     },
     {
-      name: `Lymphoma`,
-      specimens: [
-        {
-          display: `CU Lymphoma Protocol (PDF)`,
-          text: `LYMPHOMA WORKUP PROTOCOL 
- 
-Department of Pathology 
-University of Colorado Anschutz Medical Campus 
-Written by: Zenggang Pan, MD, PhD       Reviewed by: OO, KP, and JXS 
-Procedure adopted: 02/06/2023       Revision: N/A        Latest revision: N/A 
- 
-GENERAL INSTRUCTIONS 
-When a fresh lymph node or tissue is received for lymphoma workup, the following steps must be taken.  
-• Specimens should be promptly handed! If the resident on service is overloaded or not available, selected 
-physician assistant, hematopathology fellow, or hematopathology attending on service should be notified for 
-assistance immediately. 
-• Hematopathology attending on Heme 2 is responsible for the  instruction of lymphoma workup protocol  at the 
-beginning of rotation and any questions during the rotation.  
-• Check essential clinical history if not provided on the requisition.  
-• Immediately thaw the cytogenetic and flow cytometry transport media in a container with warm water (thawed 
-transport media may be available in the refrigerator). 
-• Label four glass slides for touch imprints with patient name and accession number.  
-• Wear sterile gloves and cut the lymph node/tissue on a dental wax board using a sterile scalpel. 
-• Cut the lymph node/tissue with one gentle slide per section and avoid chopping or squeezing. 
-• Make thin sections of the lymph node or tissue, ≤ 2.0 mm or thickness of a quarter. 
-• Do not leave the fresh tissue outside (particularly in a venting hood) for an extended period of time. If not 
-grossed immediately, the specimen should be placed in a sealed container and covered with saline soaked gauze. 
-Fix the thin sections in formalin immediately if not needed for flow cytometry or cytogenetic assays.  
-• If metastatic carcinoma is highly suspected, a frozen section should be performed or the stained touch imprints 
-should be reviewed with attending immediately. 
- 
-TOUCH IMPRINTS 
-• Make four air-dried touch imprints , send two slides to cytology lab for Diff-Quick staining, and then review 
-the stains with attending. 
-• To make a good touch imprint, make a fresh cut through the tissue, blot gross bloody fluid off the surface with 
-tissue gauze, and then gently touch a glass slide to the tissue surface several times.  
-• For needle core biopsies, gently touch or roll over the core on the slide.  
-• Avoid compressing or sliding the tissue on the slide. 
- 
-NEEDLE BIOPSY or SMALL BIOPSY 
-• Please contact attending on Heme 2 service for further instruction. 
-• Count and measure all cores. 
-• For multiple cores or biopsies with sufficient tissue 
-o Touch imprints: gently touch or roll over the specimen on the slide. 
-o Flow cytometry and cytogenetics: cut small pieces from each core (~2.0 mm), mix together and split into 
-flow cytometry and cytogenetic transport media. 
-o Formalin fixation/permanent: if ≤3 cores received, submit one core per each cassette; if >3 cores received, 
-submit no more than two cores per each cassette. 
-• For small or insufficient specimens 
-o Submit the specimens entirely in a biopsy bag for permanent. 
-o No touch imprints, flow cytometry, or cytogenetics  
- 
-LYMPH NODE EXCISION 
-• Measure lymph node, section the node gently, and examine the cut surface for necrosis, nodularity, and  other 
-focal lesions.  
-• For small lymph node <1.0  cm, bivalve or cut along long axis with < 2.0  mm thin sections, and submit into 2 
-or more cassettes. 
-• For large lymph node >1.0 cm, cut along the short axis with 1.0 – 2.0 mm thin sections, and submit all or good 
-representative sections into multiple cassettes. 
-• Do not fill in >2/3 of each cassette.
-
-• Make a few small cuts of the intact capsule of a large lymph n ode to avoid retraction and c rush of the 
-subcapsular tissue after fixation. 
-• Make 4 touch imprints and submit cytogenetic and flow cytometric assays as instructed.  
- 
-FLOW CYTOMETRY 
-• For a large lymph node or tissue 
-o Select a portion of tissue or multiple small pieces from different areas. 
-o Total size ~3.0 × 3.0 × 3.0 mm, no need to submit more than 5.0 ×5.0 × 5.0 mm. 
-o Gently chop the tissue into small fragments and place in thawed flow cytometry media.  
-• For needle core biopsies or small biopsies with sufficient tissue 
-o Gently cut a small piece (~ 2.0 mm) from each core or small biopsy, or select the small fragments from 
-the biopsies. 
-o Mix the small pieces together and place in thawed flow cytometry media. 
-• For needle core biopsies or small biopsies without sufficient tissue, no need for flow cytometric analysis  
-• Fill in the flow cytometry requisition form. Flow cytometry panel selection: 
-o For cases with no specific clinical history, select ‘Low Cell Panel’ 
-o In other circumstances, please contact attending on Heme 2 service 
-• The tissues on the same location when submitted in different containers can be mixed and submitted together. 
-• The tissues from different locations are submitted separately for flow cytometry assays.  
- 
-CYTOGENETICS 
-• The tissue for cytogenetics must be handled in a sterile fashion. 
-• For a large lymph node or tissue 
-o Select a portion of tissue or multiple small pieces from different areas. 
-o Total size ~3.0 × 3.0 × 3.0 mm, no need to submit more than 5.0 ×5.0 × 5.0 mm. 
-o Gently chop the tissue into small fragments and place in thawed cytogenetic transport media. 
-• For needle core biopsies or small biopsies with sufficient tissue 
-o Gently cut a small piece ( ~2.0 mm) from each core or small biopsy, or select the small fragments from 
-the biopsies. 
-o Mix the small pieces together and place in thawed transport media 
-• For needle core biopsies or small biopsies without sufficient tissue, no need for cytogenetic analysis  
-• Fill in the cytogenetic requisition form and check the box of ‘Chromosome analysis’. 
- 
-LYMPHOMA WORKUP GROSS DICTATION TEMPLATE 
-The specimen is received (fresh vs. fixed) in (# containers) for lymphoma workup, each labeled with the patient’s 
-name “#” and designated “#.” The specimen consists of (gross to include number of fragments, size, appearance, 
-etc.). The section surface of the lymph node reveals (color, consistency, nodularity, necrosis, etc). The specimen 
-is submitted as per the Lymphoma Workup Protocol: ( XX) touch imprints are made. Representative pieces are 
-submitted for cytogenetic and flow cytometric analyses. The remaining specimen is submitted entirely into 
-cassettes (##). 
- 
- 
- 
- 
- 
- 
-        02/06/2023 
-Signature of Hematopathology Director    Date`
-        }
-      ]
+      name: 'Lymphoma',
+      specimens: []
     }
-  ]
-};
-
-const BST_BRANCH = {
-  standalone: [
-  ],
-  categories: [
-    { name: "Grossing Info", specimens: [
-      { display: "BST grossing info", text: `BST service Grossing Guidelines and References
-Gross examination is critical for bone and soft tissue tumors, and the resident will gross as much as possible.
-Always review radiographic studies (the actual images not just the interpretation!) prior to handling a neoplastic case. This is especially important for bone lesions.
-Attendings should see all large tumor specimens. Please consult the on-service BST attending (or any available BST attending or Andrea Hartwick) prior to grossing complex. specimens. Notify your attending early if complicated cases are going to require review.
-Gross photographs are extremely helpful and should be obtained on all large tumors, amputations and gross-only specimens.
-Tissue must be formalin fixed before decalcification. Decalcification takes time, take thin sections and check their progress DAILY. This can include carefully checking with a blade for resistance.
-Be careful when cutting bone!
-When grossing bony specimens containing tumor (primary or metastases) make every effort to submit some pieces of non-bony tumoral tissue without any decalcification.
-The key to grossing an amputation is understanding the clinical reason for the surgery (infection, ischemia, tumor, contracture) and documenting the pertinent findings.
-Submit an appropriate number of sections. For a large resection this is no less than 10 sections, but in general ~1 cassette/cm of tissue is appropriate. Submit small samples in their entirety (usually <5 blocks) if the question regards a new or existing tumor diagnosis. Sections must have adequate sampling of margins and tumor, if applicable. Use your judgement in non-neoplastic cases, where few representative sections are often adequate.
-Contact a BST attending if you have questions.
-    For bones resected for fracture, always sample the fracture site (additional cassettes may be submitted if gross tumor is present).
-– For bones resected for osteoarthritis, take a gross photo of the articular surface (dried off to reduce glare).
-- Amputations typically need margins sampled (if resected for infection, tumor or ischemia). The proximal bone should be described as either transected or disarticulated.  Disarticulated margins do not need to be sampled for microscopy unless grossly abnormal.
-- Fat must be sectioned thinly and well-fixed to allow for tissue processing.  Sections may require additional fixation in formalin after placement into cassettes.
-- If more than one part is photographed in a case, you must annotate the image to distinguish the different parts.
-- For cardiac pacemaker/ICD leads: if the requisition includes a comment to evaluate for vein wall, then photograph the sample. Ink the external surface of any tissue adherent to the lead and then incise longitudinally to remove from the lead (keeping the tissue as intact as possible).  Serially section the tissue (forming C shaped pieces with ink on the external surface) and submit all tissue. Check with the accessioner to be sure that each cassette processed this way has both the VVG and Desmin ordered (protocol for Cardiac Lead part type).` },
-    ] },
-    { name: "Specimen List", specimens: [
-      { display: "BST specimen list", text: `BST specimens
-*Note: This list is NOT all-inclusive and there will be specimens that are not covered. Please ask if you have any questions regarding specimens or gross descriptions both listed and not listed below.
-Bone, biopsy
-Bone fragments/curettage/reamings
-Bone resection (trauma)
-Bone resection (tumor)
-Femoral/humeral head
-Knee bones
-Bone resection osteoarthritis
-Duprytren’s contracture
-Finger/toe
-Part of hand/foot
-Above-the-knee amputation (AKA)
-Below-the-knee amputation (BKA)
-Soft tissue biopsy
-Lipoma
-Soft tissue debridement
-Soft tissue resection (tumor)
-Soft tissue resection (trauma)
-Thrombus/Embolism
-Medical Hardware
-Foreign Body
-Skin debridement
-Skin for tumor (melanoma)
-Sentinel lymph nodes- melanoma or Merkle Cell Carcinoma
-Ganglion cyst
-Muscle
-Nerve ID only (from inguinal hernia repair)
-Nerve neuromuscular disease (NeuroPath)
-Rib- gross only if for thoracic outlet syndrome or surgical exposure of thorax
-Aorta
-Synovium
-Stone (gross only, might send for chemical analysis)
-Temporal artery (Neuropath)
-Artery/Vein
-Lymph node` },
-    ] },
-    { name: "Photograph Policy", specimens: [
-      { display: "BST photograph policy", text: `BONE AND SOFT TISSUE SERVICE
-GROSS PHOTO GUIDELINES
-Photographs are all expected to be high-quality on a blue background where possible
-Photographs should include clearly visible size bar where possible (either automated by the camera or a ruler)
-Required Photographs
-Photograph all big samples (resections or excisions), and any other non-biopsy sample where a neoplasm is considered (core biopsies and incisional biopsies do not need to be photographed) (EXCEPTION - Do not need to photograph probable lipomas unless 10cm or more in size, or unless focal gross abnormality seen)
-Photograph all hardware / medical devices /foreign objects (this applies both to gross only specimens and specimens where these are present within a larger tissue specimen) - try to document any inscriptions, labels, etc. with photographs (dictating these tends to result in typos)
-Photograph all GROSS ONLY specimens
-Photograph the articular surface of all gross only joint replacements (dried of formalin) including femoral heads, knee bones and humeral heads, especially areas of gross eburnation. No need to photograph the cut bony surface if unremarkable.
-Photograph any cases with unusual or unexpected gross findings
-Photograph all amputation specimens including digits and limbs
-Do Not Require Photograph
-Probable lipomas (unless 10cm or more in size, or unless focal gross abnormality seen)
-Small biopsies or curettage or reamings specimens` },
-    ] },
-    { name: "Protocols", specimens: [
-      { display: "BST protocol (James version)", text: `Knee  
-Received in formalin, labeled with the patient’s name MRN and “left total knee” are multiple 
-fragments of bone and soft tissue (12.0 x 9.0 x 2.0 cm in aggregate). The bone fragments 
-include recognizable portions of the tibial plateau and femoral condyles. The articular surface is 
-markedly roughened with areas of cartilage loss and eburnation of the bony surface. The soft 
-tissue is tan/pink and includes fragments of meniscus. Gross photographs are taken. This is a 
-gross only examination.  
- 
-Hip  
-Received fresh labeled with the patient’s name and unit number and “left hip” is a 5 × 5 × 4 cm 
-flattened femoral head and attached neck with a smooth resection margin. The articular surface 
-is covered by irregularly surfaced cartilage with areas of cartil age loss and eburnation of the 
-underlying bone. Multiple peripheral osteophytes are present. The bone is fixed and then 
-decalcified. Also received are multiple fragments of pink/tan fibrous tissue measuring in 
-aggregate 3 × 3 × 2 cm . Gross photographs are  taken. This is a gross only examination.  
- 
-Leg amp  
-Received fresh labeled with the patient’s name and unit number and “leg” is a right lower 
-extremity amputated through the tibia and fibula with a smooth resection margin (length of leg 
-37 cm; circumference of calf 40 cm; foot 26 × 9 cm). The fourth and fif th digits have been 
-previously amputated. The skin is diffusely mottled purple and red. There are ulcerations 
-present on the lateral aspect of the foot (3 × 1 cm) and on the plantar surface of the great toe (1 
-× 1 cm). The anterior vessels are diffusely ca lcified with luminal obstructions of up to 80%. The 
-posterior vessels are diffusely calcified with luminal obstructions of up to 50%. The metatarsal -
-phalangeal joint of the great toe consists of smooth glistening white cartilage and is grossly 
-unremarkable . The bone and soft tissue at the resection margin are unremarkable. A cross 
-section of the third digit is fixed and decalcified prior to submission.  
- 
-Cassette #1: Skin, ulcers, 2 frags, RSS.  
-Cassette #2: Skin and soft tissue at margin, 1 frag, RSS.  
-Cassette #3: Cross section of third digit, 1 frag, RSS.  
-Cassette #4: Anterior vessels, 1 frag, RSS.  
-Cassette #5: Posterior vessels, 1 frag, RSS.  
- 
-HEADERS:  
-Bone, *** femur/knee, arthroplasty:  
-- Degenerative joint disease with diffuse irregularity of the articular surface (for gross 
-examination only).  [without eburnation]  
-OR  
-- Severe degenerative joint disease  with focal eburnation of the articular surface (for gross 
-examination only).  [with eburnation]` },
-      { display: "BST fracture protocol (James v2)", text: `BST fr acture  
- 
-Received in formalin labeled " name/mrn/title " is a [x x x] cm femora l head specimen. The  articular surface is covered 
-with cartilage, with an area of disruption (and calcification ) measuring 3.1 x 2.6 cm. The femoral neck  margin is 
-ragged and hemorrhagic, compatible with a possible fracture site. The specimen is bivalved to reveal hemorrhagic cut  
-surfaces with no mass lesions. Gross photographs are obtained. Representative sections are submitted in (A1), 
-following  decalcification.` },
-    ] },
-    { name: "Rotation Outline", specimens: [
-      { display: "Updated BST rotation outline (v2)", text: `University of Colorado Hospital
-Bone and Soft Tissue Surgical Pathology Service
-I. EXPECTATIONS
-GENERAL
-These cases are your patients and you will take responsibility for them.
-Bone and soft tissue is a difficult subspecialty, and every case is different. Take ownership of each case and treat each new specimen as a new challenge.
-Avoid copy and paste pathology.
-Communicate early and often:
-GROSS EXAMINATION
-Gross examination is critical for bone and soft tissue tumors, and the resident will gross as much as possible.
-Always review radiographic studies (the actual images not just the interpretation!) prior to handling a neoplastic case. This is especially important for bone lesions.
-Attendings should see all large tumor specimens. Please consult the on-service BST attending (or any available BST attending or Andrea Hartwick) prior to grossing complex. specimens. Notify your attending early if complicated cases are going to require review.
-Gross photographs are extremely helpful and should be obtained on all large tumors, amputations and gross-only specimens.
-Tissue must be formalin fixed before decalcification. Decalcification takes time, take thin sections and check their progress DAILY. This can include carefully checking with a blade for resistance.
-Be careful when cutting bone!
-When grossing bony specimens containing tumor (primary or metastases) make every effort to submit some pieces of non-bony tumoral tissue without any decalcification.
-The key to grossing an amputation is understanding the clinical reason for the surgery (infection, ischemia, tumor, contracture) and documenting the pertinent findings.
-When grossing amputations via disarticulation, no proximal bone margins needs to be submitted.
-Submit an appropriate number of sections. For a large resection this is no less than 10 sections, but in general ~1 cassette/cm of tissue is appropriate. Submit small samples in their entirety (usually <5 blocks) if the question regards a new or existing tumor diagnosis. Use your judgement in non-neoplastic cases, where few representative sections are often adequate.
-Contact a BST attending if you have questions.
-Keep track of paperwork for gross-only specimens. Ensure photographs are uploaded to Copath, and bring paperwork to sign-out daily.
-MICROSCOPIC EXAMINATION
-Triage patients – e.g. rush, STAT, new significant diagnoses, unexpected results. Communicate with your attending early and often about these patients.
-Please keep slides for non-neoplastic specimens in the BST box until all slides are available for sign out. For neoplasms, bring any available slides to sign out even if some specimens are still in decal.
-Please attempt to grade sarcomas by FNCLCC criteria, even for small biopsy specimens and metastatic tumors.
-Read and prepare for your cases. We have provided a copy of Practical Soft Tissue Pathology for use by the resident on service. This provides a good differential diagnosis-based approach to soft tissue tumors.
-Preview your cases and know your patients. Location and presentation, imaging findings, culture results etc. are important variables and you should know these items prior to sign-out.
-Formulate a descriptive report. This is often as important as the diagnosis!
-Think about necessary ancillary testing (molecular, IHC, cytogenetics).
-Formulate a differential diagnosis
-Write-up cases. For tumors this typically includes a descriptive comment and a synoptic table. Use the provided interactive synoptic reports.
-Stay organized! This can be difficult with samples requiring decal. Ensure requisitions, slides, and transcription are in order.
-SIGN-OUT
-We will be double-scoping sign-out for all patients, time permitting.
-Make sure your attending is aware of protected time prior to scheduling sign outs.
-TIME MANAGEMENT
-Time management is an important part of learning surgical pathology. Our training is also dynamic, so please communicate with us early if there are any issues.
-II. GOALS
-The goals are multiple and encompass the core competencies of your residency training: medical knowledge, patient care, systems based practice, communication, professionalism, and problem-based learning. All of these are incredibly important and we will work on all of these throughout your rotation. Our goal is to facilitate your growth as a physician in general and as a surgical pathologist in particular.
-In surgical pathology, many core competencies are addressed through often mundane "clerical tasks" such as verifying patient identifiers, double checking your work and the work of others, and organizing slides and paperwork (e.g. patient care, systems based practice, communication, and professionalism). As these often mundane tasks are vital to your successful career as a physician-pathologist, you are expected without exception to perform them on every one of your patients.
-One huge focus of this rotation is developing your diagnostic decision-making process. The model we will use is as follows:
-(1) Hypothesis activation: "what are the diagnostic possibilities in this case?"
-In surgical pathology, this is driven by the provided clinical information
-(2) Data collection and valuation: "how do I test my hypotheses?"
-Obtaining additional clinical information (e.g. from EPIC or directly from the care team)
-Gross examination
-Microscopic examination
-Use of ancillary tests (e.g. histochemical or immunohistochemical stains, cytogenetics)
-Understand the limitations of the data
-(3) Hypothesis valuation: "how do I integrate the data to address my differential diagnosis?"
-Sometimes we arrive at a single best answer; at other times we are left with a differential diagnosis; in some instances, we provide only a descriptive "diagnosis". This is especially true for BST cases, where limited biopsy material may not lend itself to a complete and final diagnosis.
-Our time together is limited, we can only say so much, and we only know so much; huge resources for expanding your medical knowledge are textbooks and the primary literature. You are expected to read something every day.
-Previewing is an excellent time to work on those mundane tasks, your diagnostic decision making process, and expanding your medical knowledge through reading. Previewing is an essential part of your surgical pathology rotation and you are expected to make the attempt to preview every case.
-Remember, bone and soft tissue pathology is difficult. The lesions we see are rare, and there are multiple examples of mimicry that can lead you down the wrong path. Keep your mind open, and avoid copy and paste pathology. Every case is unique, and demands your complete attention. “Wallpaper matching” is discouraged, and taking a pattern-based approach to differential diagnoses is recommended.
-We also deal with abundant bread and butter pathology, learn normal, learn reactive, learn how to approach mesenchymal tissues.
-III. OBJECTIVES
-Understand the normal macroscopic and microscopic appearance of mesenchymal tissues. This can be difficult given the breadth of our sample types, and will require skills developed over the course of residency. Start with Histology for Pathologists, 4th edition, pp.85-260 on the Musculoskeletal System (covering bone, joints, myofibroblasts, adipose tissue, skeletal muscle, and blood vessels). In addition, knowing normal findings in the cutaneous tissues will be critical (pp.3-66).
-Perform a complete gross examination for primary resection material with a focus on:
-Understanding relevant normal landmarks
-Evaluating and submitting pertinent marginal tissues
-Ensuring adequate and detailed gross descriptions with thorough block annotation (avoid using verbiage such as “representative sections in A1-A50”).
-Select appropriate sections to illustrate pertinent margins, but ALSO thoroughly sampling the primary neoplastic tissues.
-Independently perform a macroscopic and microscopic examination of bone and soft tissue specimens and identify pertinent pathologic findings
-Understand how to correlate clinical and radiographic findings in the interpretation of diagnostic specimens
-Know how to apply the FNCLCC system for grading sarcomas. Know which sarcomas are excluded from this system, and when grading is not appropriate.
-Know how to grossly and microscopically identify the elements of the CAP synoptic reports, and when appropriate, how to complete synoptic reports.
-Identify and communicate the three key elements in oncologic resections:
-Tumor type
-Margin status
-TNM stage (dependent upon location)
-Know the molecular basis, appropriate application, and interpretation of the predictive tests commonly used in bone and soft tissue lesions
-Understand the pathophysiologic basis, clinical findings, gross appearance, and microscopic findings of the most common soft tissue lesions. This is a far from exhaustive list, but is an attempt to detail those lesions all surgical pathologists should be familiar with. The below organization refers to relevant patterns detailed in the beginning of Hornick’s 2nd edition of Practical Soft Tissue Pathology:
-Spindle Cell Pattern
-Nodular fasciitis
-Myofibroma
-Benign fibrous histiocytoma and its variants
-Dermatofibrosarcoma protuberans
-Fibromatosis
-Neurofibroma
-Schwannoma
-Leiomyoma/Leiomyosarcoma
-Gastrointestinal stromal tumor
-Solitary fibrous tumor
-Spindle cell lipoma and lipomatous variants
-Perineurioma
-Synovial sarcoma, monophasic and biphasic patterns
-Malignant peripheral nerve sheath tumor
-Dedifferentiated liposarcoma
-Clear cell sarcoma
-Epithelioid Pattern
-Epithelioid hemangioma
-Epithelioid hemangioendothelioma
-Glomus tumor
-Granular cell tumor
-Myoepithelial carcinoma
-Epithelioid sarcoma
-Perivascular epithelioid cell tumor (PEComa)
-Malignant rhabdoid tumor
-Alveolar soft part sarcoma
-Pleomorphic Pattern
-Angiosarcoma
-Atypical fibrous histiocytoma
-Atypical fibroxanthoma
-Pleomorphic liposarcoma
-Pleomorphic rhabdomyosarcoma
-Myxofibrosarcoma
-Undifferentiated pleomorphic sarcoma
-Round Cell Pattern
-Ewing sarcoma
-Embryonal and Alveolar rhabdomyosarcoma
-High-grade myxoid (round cell) liposarcoma
-Poorly differentiated synovial sarcoma
-Desmoplastic small round cell tumor
-Mesenchymal chondrosarcoma
-CIC and BCOR-rearranged sarcomas
-Myxoid Pattern
-Myxoma
-Myxoid liposarcoma
-Myxofibrosarcoma, low and intermediate grade
-Extraskeletal myxoid chondrosarcoma
-Low-grade fibromyxoid sarcoma
-Understand the pathophysiologic basis, clinical findings, gross appearance, radiographic features, and microscopic findings of the most common bone lesions. This is a far from exhaustive list, but is an attempt to detail those lesions all surgical pathologists should be familiar with. The below organization is based on the 5th edition of the WHO classification for Soft Tissue and Bone Tumors.
-Chondrogenic Tumors
-Enchondroma
-Osteochondroma
-Chondroblastoma
-Chondrosarcoma and its variants
-Osteogenic Tumors
-Osteoma
-Osteoid osteoma
-Osteoblastoma
-Osteosarcoma and its variants
-Vascular Tumors
-Hemangioma of bone
-Epithelioid hemangioma of bone
-Epithelioid hemangioendothelioma of bone
-Angiosarcoma of bone
-Osteoclastic giant cell-rich tumors
-Aneurysmal bone cyst
-Giant cell tumor of bone
-Non-ossifying fibroma
-Other mesenchymal tumors of bone
-Adamantinoma of long bones
-Simple bone cyst
-Fibrous dysplasia
-Boney metastases
-Additional non-neoplastic boney entities not covered in the WHO
-Fracture callus
-Bone infarct
-Osteomyelitis, acute and chronic
-Pagets Disease
-Basics of synovial pathology including synovitis
-IV. APPENDICES
-Appendix 1 – Bone and Soft Tissue Interactive Cap Synoptics
- | Cell/Text | Office | Email
-Dr. Clay | 720-731-1407 | 89059 | Michael.clay@cuanschutz.edu
-Dr. Schowinsky | 443-690-3509 | 84411 | jeffrey.schowinsky@cuanschutz.edu
-Dr. Marshall | 303-453-9147 | 84422 | carrie.marshall@cuanschutz.edu` },
-    ] },
   ]
 };
 const FROZENS_BRANCH = {
@@ -2747,11 +2291,20 @@ const DOC_LINKS_BY_SERVICE = {
 
 function getCategoryDocLinks(serviceName, categoryName) {
   const links = DOC_LINKS_BY_SERVICE[serviceName] || [];
-  if (!categoryName) return links;
+  if (!categoryName) return [];
 
   const normalizedCategory = normalize(categoryName);
-  const matched = links.filter((link) => normalize(link.label).includes(normalizedCategory));
-  return matched.length ? matched : links;
+  return links.filter((link) => {
+    const normalizedLabel = normalize(link.label || '');
+    const inLabel = normalizedLabel.includes(normalizedCategory);
+
+    if (!/\.pdf$/i.test(link.label || '')) {
+      return inLabel;
+    }
+
+    const categoryLooksLikeProtocol = /protocol|policy|guideline/i.test(categoryName || '');
+    return inLabel || categoryLooksLikeProtocol;
+  });
 }
 
 function createDocLinksRow(serviceName, categoryName = '') {
@@ -2832,7 +2385,7 @@ function renderSectionBody(lines) {
 
   const flushParagraph = () => {
     if (!paragraphBuffer.length) return;
-    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join('\n'))}</p>`);
     paragraphBuffer = [];
   };
 
@@ -2995,9 +2548,6 @@ function render(filterText = '') {
 
     const serviceItemsDiv = document.createElement('div');
     serviceItemsDiv.className = 'items';
-
-    const serviceDocLinks = createDocLinksRow(serviceName);
-    if (serviceDocLinks) serviceItemsDiv.appendChild(serviceDocLinks);
 
     if (!filteredStandalone.length && !filteredCategories.length) {
       const empty = document.createElement('div');

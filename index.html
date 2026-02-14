@@ -2832,7 +2832,7 @@ function renderSectionBody(lines) {
 
   const flushParagraph = () => {
     if (!paragraphBuffer.length) return;
-    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join('\n'))}</p>`);
     paragraphBuffer = [];
   };
 

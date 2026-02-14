@@ -2747,11 +2747,20 @@ const DOC_LINKS_BY_SERVICE = {
 
 function getCategoryDocLinks(serviceName, categoryName) {
   const links = DOC_LINKS_BY_SERVICE[serviceName] || [];
-  if (!categoryName) return links;
+  if (!categoryName) return [];
 
   const normalizedCategory = normalize(categoryName);
-  const matched = links.filter((link) => normalize(link.label).includes(normalizedCategory));
-  return matched.length ? matched : links;
+  return links.filter((link) => {
+    const normalizedLabel = normalize(link.label || '');
+    const inLabel = normalizedLabel.includes(normalizedCategory);
+
+    if (!/\.pdf$/i.test(link.label || '')) {
+      return inLabel;
+    }
+
+    const categoryLooksLikeProtocol = /protocol|policy|guideline/i.test(categoryName || '');
+    return inLabel || categoryLooksLikeProtocol;
+  });
 }
 
 function createDocLinksRow(serviceName, categoryName = '') {
@@ -2832,7 +2841,7 @@ function renderSectionBody(lines) {
 
   const flushParagraph = () => {
     if (!paragraphBuffer.length) return;
-    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join('\n'))}</p>`);
     paragraphBuffer = [];
   };
 
@@ -2995,9 +3004,6 @@ function render(filterText = '') {
 
     const serviceItemsDiv = document.createElement('div');
     serviceItemsDiv.className = 'items';
-
-    const serviceDocLinks = createDocLinksRow(serviceName);
-    if (serviceDocLinks) serviceItemsDiv.appendChild(serviceDocLinks);
 
     if (!filteredStandalone.length && !filteredCategories.length) {
       const empty = document.createElement('div');

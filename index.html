@@ -363,32 +363,14 @@ const GI_BRANCH = {
 };
 
 const BIOPSIES_NON_DERM_BRANCH = {
-  "standalone": [],
-  "categories": [
+  standalone: [],
+  categories: [
     {
-      "name": "GI",
-      "specimens": [
-        {
-          "display": "GI biopsy header formatting — overview",
-          "text": "Gastrointestinal Biopsy Final Diagnosis Header Formatting and Verbiage\nThe general format for GI biopsies is as follows:\nLetter Designation) Site, sub-site, additional descriptor, procedure:\n-\nFor example:\nC) Colon, transverse, polyps x 5, polypectomy:\n-"
-        },
-        {
-          "display": "GI biopsy header formatting — site notes",
-          "text": "“Site” notes:\n(1) The commonly biopsied sites (lettered in the list below) and their subsites (numbered) include:\n(a) Esophagus\n(1) upper third\n(2) middle third\n(3) lower third\n(b) Gastroesophageal junction\n(c) Stomach\n(1) cardia\n(2) fundus\n(3) body\n(4) antrum\n(d) Duodenum\n(1) bulb\n(2) second part\n(3) third part\n(4) fourth part\n(e) Jejunum\n(f) Terminal ileum\n(g) Cecum\n(h) Colon\n(1) ascending\n(2) transverse\n(3) descending\n(4) sigmoid\n(i) Rectum\n(j) Anus\n(2) The requisition often incorrectly labels the site.  Please recognize this and do not repeat the error.\n(a) For example:\n(1) The gastroesophageal junction is a site, not a subsite of the esophagus\n(2) The terminal ileum is a site, not a subsite of the colon\n(3) The cecum, rectum, and anus are sites, not subsites of the colon\n(3) Case 1.  More than one subsite is sampled from the same site\n(a) List the site followed by a comma and then the subsites\n(b) For example:\n(1) Stomach, body and antrum, biopsy\n(2) Colon, ascending, transverse, and descending, biopsy\n(4) Case 2.  More than one site is sampled in the same container, as are multiple subsites\n(a) This gets more cumbersome; try to make it simple\n(b) For example, for the third container (part C):\n(1) Requisition says \"Major Site: Esophagus\" and \"Location: lower third,\ngastroesophageal junction\"\n(a) You say…\nC) Lower third of the esophagus and gastroesophageal junction, biopsy\n(2) Requisition says \"Major site: Colon\" and \"Location: cecum, ascending, transverse\"\n(a) You say…\nC) Cecum, ascending colon, and transverse colon, biopsy\n(3) Requisition says \"Major site: Colon\" and \"Location: sigmoid and rectum\"\n(a) You say…\nC)  Sigmoid colon and rectum"
-        },
-        {
-          "display": "GI biopsy header formatting — additional descriptor notes",
-          "text": "\"Additional descriptor\" notes:\n(1) These are sometimes specified.\n(2) Always include the following if they are specified\n(a) polyps\n(b) nodules\n(c) masses\n(3) Do not use \"normal\" or \"random\" in the additional descriptor even if it is written on the requisition\n(4) Do not use their guessed diagnosis in the additional descriptor even if it is written on the requisition, which are mostly the following:\n(a) hyperplastic polyp or ?hyperplastic polyp\n(b) sessile serrated adenoma (or SSA or SSP) or ?SSA\n(c) benign fundic gland polyp\n(5) For example:\n(a) Requisition for part C says \"Major site: Colon\" and \"Location: transverse\" and \"Finding:\npolyp\" and \"Maneuver: biopsy\"\n(1) You say…\nC) Colon, sigmoid, polyp, biopsy\n(b) Requisition says \"Major site: Colon\" and \"Location: transverse, sigmoid\" and \"Finding: two 4\nmm polyps\" and \"Maneuver: polypectomy\"\n(1) You say…\nC) Colon, transverse and sigmoid, 4 mm polyps x 2, polypectomy\n(c) Requisition says \"Major site: Stomach\" and \"Location: antrum\" and \"Finding: ulcer\" and\n\"Maneuver: biopsy\"\n(1) You say…\nC) Stomach, antrum, ulcer, biopsy"
-        },
-        {
-          "display": "GI biopsy header formatting — procedure notes",
-          "text": "“Procedure” notes:\n(1) Most common procedures from the endoscopy lab include:\n(a) Biopsy\n(b) Polypectomy\n(c) Endoscopic mucosal resection\n(2) The procedure is always singular.  For example, use “biopsy” and never “biopsies”.\n(3) The procedure is usually found on the requisition under “Maneuver”.  This is not always correct but it is the best starting point (e.g. sometimes an endoscopic mucosal resection is labeled as “polypectomy”); this might be indicated somewhere else on the requisition, usually in the \"Impressions\" section."
-        }
-      ]
+      name: 'GI',
+      specimens: []
     }
   ]
 };
-
 const GU_BRANCH = {
   standalone: [
     {
@@ -2747,11 +2729,20 @@ const DOC_LINKS_BY_SERVICE = {
 
 function getCategoryDocLinks(serviceName, categoryName) {
   const links = DOC_LINKS_BY_SERVICE[serviceName] || [];
-  if (!categoryName) return links;
+  if (!categoryName) return [];
 
   const normalizedCategory = normalize(categoryName);
-  const matched = links.filter((link) => normalize(link.label).includes(normalizedCategory));
-  return matched.length ? matched : links;
+  return links.filter((link) => {
+    const normalizedLabel = normalize(link.label || '');
+    const inLabel = normalizedLabel.includes(normalizedCategory);
+
+    if (!/\.pdf$/i.test(link.label || '')) {
+      return inLabel;
+    }
+
+    const categoryLooksLikeProtocol = /protocol|policy|guideline/i.test(categoryName || '');
+    return inLabel || categoryLooksLikeProtocol;
+  });
 }
 
 function createDocLinksRow(serviceName, categoryName = '') {
@@ -2832,7 +2823,7 @@ function renderSectionBody(lines) {
 
   const flushParagraph = () => {
     if (!paragraphBuffer.length) return;
-    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join(' '))}</p>`);
+    fragments.push(`<p class="template-paragraph">${esc(paragraphBuffer.join('\n'))}</p>`);
     paragraphBuffer = [];
   };
 
@@ -2995,9 +2986,6 @@ function render(filterText = '') {
 
     const serviceItemsDiv = document.createElement('div');
     serviceItemsDiv.className = 'items';
-
-    const serviceDocLinks = createDocLinksRow(serviceName);
-    if (serviceDocLinks) serviceItemsDiv.appendChild(serviceDocLinks);
 
     if (!filteredStandalone.length && !filteredCategories.length) {
       const empty = document.createElement('div');
